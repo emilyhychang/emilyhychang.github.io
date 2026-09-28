@@ -59,8 +59,8 @@ export const links: Record<
   email: "mailto:emilyhychang@gmail.com",
   linkedin: "https://www.linkedin.com/in/emilyhychang/",
   github: "https://github.com/emilyhychang",
-  f1Live: null,
-  f1Github: null,
+  f1Live: "https://emilyhychang.github.io/f1-site/",
+  f1Github: "https://github.com/emilyhychang/f1-site",
 };
 export const toolGroups = [
   { title: "Build", items: ["Python", "JavaScript", "React", "Git"] },

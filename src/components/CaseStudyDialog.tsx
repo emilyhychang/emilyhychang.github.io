@@ -1,5 +1,12 @@
+import { cornerstoneOverview } from "../data/cornerstoneCaseStudy";
+import {
+  CornerstoneCaseVisual,
+  CornerstonePresentation,
+} from "./CornerstoneCaseDetails";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { f1Overview } from "../data/f1CaseStudy";
+import { F1Architecture, F1CaseVisual } from "./F1CaseDetails";
 import { useModal } from "../hooks/useModal";
 import { caseStudies, decisionQuestions } from "../data/caseStudies";
 import { links, projects, type Project } from "../data/portfolio";
@@ -154,21 +161,46 @@ export function CaseStudyDialog({
                 {project.title}
               </motion.h2>
               <p className="case-statement">{project.statement}</p>
-              <p className="case-draft">
-                Case study in progress · Content placeholders are marked below.
-              </p>
+              {project.id === "f1" ? (
+                <p className="case-draft">
+                  SCUDERIA 16 / Race analysis, forecasting, and fantasy planning
+                </p>
+              ) : project.id === "cornerstone" ? (
+                <p className="case-draft">
+                  Mud Lily Clay / Website redesign and analytics review
+                </p>
+              ) : (
+                <p className="case-draft">
+                  Case study in progress · Content placeholders are marked
+                  below.
+                </p>
+              )}
               <motion.div
                 layoutId={reduced ? undefined : `visual-${project.id}`}
                 transition={{ duration: 0.3 }}
               >
-                <ProjectVisual id={project.id} />
+                {project.id === "f1" ? (
+                  <F1CaseVisual />
+                ) : project.id === "cornerstone" ? (
+                  <CornerstoneCaseVisual />
+                ) : (
+                  <ProjectVisual id={project.id} />
+                )}
               </motion.div>
               <div className="case-overview">
                 <h3 className="eyebrow">Overview</h3>
-                {["Role", "Timeline", "Tools"].map((label) => (
+                {(project.id === "f1"
+                  ? f1Overview
+                  : project.id === "cornerstone"
+                    ? cornerstoneOverview
+                    : ["Role", "Timeline", "Tools"].map((label) => ({
+                        label,
+                        value: `[Add ${label.toLowerCase()}]`,
+                      }))
+                ).map(({ label, value }) => (
                   <div key={label}>
                     <span className="eyebrow">{label}</span>
-                    <p>[Add {label.toLowerCase()}]</p>
+                    <p>{value}</p>
                   </div>
                 ))}
               </div>
@@ -193,15 +225,23 @@ export function CaseStudyDialog({
                 <span className="eyebrow">0{index + 1}</span>
                 <div>
                   <h3>{section.title}</h3>
-                  <p className="case-placeholder">{section.prompt}</p>
+                  {section.paragraphs ? (
+                    <div className="case-prose">
+                      {section.paragraphs.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="case-placeholder">{section.prompt}</p>
+                  )}
                   {project.id === "watchtogether" &&
                     section.id === "decisions" && <DecisionDisclosure />}
                   {project.id === "cornerstone" &&
                     section.id === "presentation" && (
-                      <ProjectVisual id="cornerstone" />
+                      <CornerstonePresentation />
                     )}
                   {project.id === "f1" && section.id === "approach" && (
-                    <div className="case-asset">[Add architecture diagram]</div>
+                    <F1Architecture />
                   )}
                   {project.id === "lma" && section.id === "automation" && (
                     <ProjectVisual id="lma" />

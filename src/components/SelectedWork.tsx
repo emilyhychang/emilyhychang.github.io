@@ -101,11 +101,11 @@ function ProjectSection({
       </motion.div>
       <div className="project-foot">
         <span>
-          [Add{" "}
-          {project.id === "cornerstone"
-            ? "client-approved outcome"
-            : "project detail"}
-          ]
+          {project.id === "f1"
+            ? "SCUDERIA 16 · JavaScript / Python / Data visualization"
+            : project.id === "cornerstone"
+              ? "Mud Lily Clay · Website redesign / Analytics"
+              : "[Add project detail]"}
         </span>
         <Magnetic>
           <button className="case-link" onClick={() => onOpen(project.id)}>

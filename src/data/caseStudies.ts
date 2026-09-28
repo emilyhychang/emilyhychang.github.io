@@ -1,8 +1,11 @@
 import type { ProjectId } from "./portfolio";
+import { f1Sections } from "./f1CaseStudy";
+import { cornerstoneSections } from "./cornerstoneCaseStudy";
 export interface CaseSection {
   id: string;
   title: string;
-  prompt: string;
+  prompt?: string;
+  paragraphs?: string[];
 }
 export const caseStudies: Record<ProjectId, CaseSection[]> = {
   watchtogether: [
@@ -34,73 +37,8 @@ export const caseStudies: Record<ProjectId, CaseSection[]> = {
       prompt: "[Add lessons, open questions, and the next experiment.]",
     },
   ],
-  f1: [
-    {
-      id: "problem",
-      title: "The problem",
-      prompt: "[Add the audience, problem, and intended experience.]",
-    },
-    {
-      id: "data",
-      title: "The data",
-      prompt:
-        "[Add actual data sources, transformations, limitations, and freshness.]",
-    },
-    {
-      id: "approach",
-      title: "Architecture & features",
-      prompt:
-        "[Add the implemented architecture, features, and a technical diagram.]",
-    },
-    {
-      id: "decisions",
-      title: "Technical challenges & decisions",
-      prompt:
-        "[Add a specific implementation challenge, alternatives, and the chosen tradeoff.]",
-    },
-    {
-      id: "result",
-      title: "The result",
-      prompt: "[Add verified results and screenshots.]",
-    },
-    {
-      id: "reflection",
-      title: "What I’d improve",
-      prompt: "[Add technical lessons and future improvements.]",
-    },
-  ],
-  cornerstone: [
-    {
-      id: "problem",
-      title: "The question & context",
-      prompt: "[Add a sanitized client question and business context.]",
-    },
-    {
-      id: "research",
-      title: "Research",
-      prompt: "[Add research methods, sources, and scope.]",
-    },
-    {
-      id: "approach",
-      title: "Analysis → insight",
-      prompt: "[Add analysis, supporting evidence, and the resulting insight.]",
-    },
-    {
-      id: "decisions",
-      title: "The recommendation",
-      prompt: "[Add the recommendation, alternatives, and business rationale.]",
-    },
-    {
-      id: "presentation",
-      title: "The client presentation",
-      prompt: "[Add sanitized presentation slides approved for sharing.]",
-    },
-    {
-      id: "result",
-      title: "Outcome & reflection",
-      prompt: "[Add a client-approved outcome and personal reflection.]",
-    },
-  ],
+  f1: f1Sections,
+  cornerstone: cornerstoneSections,
   lma: [
     {
       id: "problem",
