@@ -88,7 +88,7 @@ test("command search supports keyboard selection, empty results and project open
   await input.fill("resume");
   await expect(page.getByRole("option", { name: /Resume/ })).toHaveAttribute(
     "aria-disabled",
-    "true",
+    "false",
   );
   await page.keyboard.press("Escape");
   await expect(

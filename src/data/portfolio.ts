@@ -55,10 +55,10 @@ export const links: Record<
   "resume" | "email" | "linkedin" | "github" | "f1Live" | "f1Github",
   string | null
 > = {
-  resume: null,
-  email: null,
-  linkedin: null,
-  github: null,
+  resume: `${import.meta.env.BASE_URL}Emily_Chang_Resume.pdf`,
+  email: "mailto:emilyhychang@gmail.com",
+  linkedin: "https://www.linkedin.com/in/emilyhychang/",
+  github: "https://github.com/emilyhychang",
   f1Live: null,
   f1Github: null,
 };
