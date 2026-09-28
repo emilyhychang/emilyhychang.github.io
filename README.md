@@ -1,6 +1,6 @@
 # Emily Chang — Portfolio
 
-A responsive, static React + TypeScript portfolio. Phase 1 and Phase 2 establish the design system and complete homepage. Built with Vite, Tailwind CSS v4, and locally hosted Inter.
+An editorial portfolio built with React, TypeScript, Vite, Tailwind CSS v4, locally hosted Inter, and Motion. Static hosting requires no backend.
 
 ## Development
 
@@ -8,37 +8,46 @@ A responsive, static React + TypeScript portfolio. Phase 1 and Phase 2 establish
 - `npm run dev`
 - `npm run build` — type-check and generate `dist/`
 - `npm run lint`
+- `npm run test:e2e` — browser regression tests; start the dev server on port 5173 first. Uses installed Google Chrome.
+- `npm run format`
 - `npm run preview` — review the production build
 
-## Structure
+## Implemented
 
-- `src/data/portfolio.ts`: project metadata, lens relevance, verified link destinations, editable tools.
-- `src/components/Navigation.tsx`: sticky navigation and accessible mobile disclosure.
-- `src/components/Hero.tsx`: editorial introduction.
-- `src/components/SelectedWork.tsx`: project layouts and basic lens selection; projects remain visible.
-- `src/components/ProjectVisuals.tsx`: replaceable, lightweight concept visuals built with HTML/CSS/SVG.
-- `src/components/About.tsx`: About, experience, tools, and current interests.
-- `src/components/Footer.tsx`: contact and resource destinations.
-- `src/components/Shared.tsx`: typography metadata and resource-link primitives.
-- `src/index.css`: responsive tokens, compositions, focus states, and reduced-motion handling.
+- Responsive homepage, four distinct project compositions, About, experience, tools, and current interests.
+- Once-only entrance motion, staggered hero, reduced-motion support, shared lens indicator, relevant tag emphasis, desktop cursor and restrained magnetic controls.
+- Near-full-screen case studies with shared title/visual transitions, native dialog semantics, explicit keyboard focus wrapping, Escape, restored focus/scroll, reading progress and desktop section navigation.
+- Static-compatible project URLs: `#/work/watchtogether`, `#/work/f1`, `#/work/cornerstone`, `#/work/lma`. Direct entry, refresh, Back/Forward, and next-project navigation work without a server fallback.
+- A twelve-second illustrative WatchTogether playback demo; pauses when offscreen or covered by a modal. No actual streaming or networking.
+- F1 telemetry reveal, three-slide presentation preview with arrow/drag controls, once-only marketing workflow indicator, and expandable decision rows.
+- Search via navigation icon, Cmd+K or Ctrl+K. Arrow keys/Enter/Escape supported, missing destinations disabled, and one subtle F1 animation per palette opening.
+- GitHub Pages deployment workflow with build/lint checks. Select **GitHub Actions** as the Pages source in repository settings before the first deployment.
 
-## Content to replace
+## Architecture
+
+- `src/data/portfolio.ts`: centralized project metadata, relevance lenses, editable tools, and verified links.
+- `src/data/caseStudies.ts`: distinct story outlines and explicit content placeholders.
+- `src/components/`: focused homepage, preview, case-study, command-palette and motion components.
+- `src/hooks/useProjectRoute.ts`: hash routing and browser history.
+- `src/hooks/useModal.ts`: modal lifecycle, scroll locking and focus management.
+- `src/components/motion-primitives/InView.tsx`: customized Motion Primitives InView; upstream MIT attribution is included beside it.
+- Case studies and command palette load on demand.
+- `tests/portfolio.spec.ts`: end-to-end history, focus, controls, responsive and reduced-motion checks.
+
+## Replace before publishing as a finished portfolio
 
 Search `src/` for `[Add` and `[Confirm`.
 
-1. Supply resume, email, GitHub, LinkedIn, and F1 links in `links`. Null links render clearly unavailable rather than navigating to fabricated destinations.
-2. Replace the four concept visuals with verified screenshots or sanitized presentation slides. Add descriptive alt text to future images; provide dimensions and lazy loading below the fold.
-3. Add project details and verified outcomes, with no invented metrics.
-4. Add a portrait and optional personal sentence.
-5. Replace the experience row with verified company, role, period, and description.
-6. Confirm the example tools and current interests/location.
+1. Add verified resume, email, GitHub, LinkedIn, and F1 destinations in `links`. Null destinations render unavailable rather than linking to fabricated addresses.
+2. Replace concepts with application screenshots and sanitized presentation slides. Add meaningful alt text, image dimensions and lazy loading below the fold.
+3. Write case-study narratives with actual roles, dates, tools, decisions, research and outcomes. No metrics or architecture are invented.
+4. Add a portrait, optional personal sentence, verified experience, interests and location.
+5. Confirm the example tools.
 
-## Static hosting
+## Hosting
 
-`base: './'` makes the production assets work under a GitHub Pages repository subdirectory. Upload the contents of `dist/` using a Pages build/deployment workflow. No backend or remote font request is required.
+`base: './'` supports root domains and GitHub Pages repository subdirectories. The included workflow builds `dist/` and publishes it on pushes to `main`; no deployment has been triggered by local development. Hash-based case-study routes avoid GitHub Pages 404s. Regular `/work/...` paths are intentionally not used.
 
-This phase uses section anchors only. Before adding project dialogs, use hash routes such as `#/work/watchtogether` for static-compatible deep links, with history/back/forward handling. Do not add ordinary `/work/...` routes without a static fallback.
+## Motion attribution
 
-## Next phases
-
-Add a small selection of customized Motion Primitives with Motion, shared-element case-study dialogs, keyboard focus management, URL state, then project-specific interactions. Playback, deck controls, case-study links, a command palette, and cursor/magnetic effects are deliberately deferred until those phases. Current visuals are explicitly labeled concepts, not interactive product demos.
+The customized InView component adapts [Motion Primitives](https://github.com/ibelick/motion-primitives), copyright 2024 ibelick, MIT licensed. The other interaction components are purpose-built with Motion and native browser semantics.
