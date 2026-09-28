@@ -6,6 +6,7 @@ import {
   lenses,
   links,
   projects,
+  projectsForLens,
   type Lens,
   type Project,
 } from "../data/portfolio";
@@ -92,6 +93,8 @@ function ProjectSection({
               f1: "Explore",
               cornerstone: "View deck",
               lma: "See work",
+              healthcare: "View analysis",
+              "soft-drinks": "View research",
             }[project.id]
           }
           onOpen={() => onOpen(project.id)}
@@ -124,7 +127,6 @@ export function SelectedWork({
   onOpen: (id: Project["id"]) => void;
 }) {
   const reduced = useReducedMotion();
-  const [preview, setPreview] = useState<Lens | null>(null);
   const [lens, setLens] = useState<Lens>("All");
   return (
     <section
@@ -132,7 +134,9 @@ export function SelectedWork({
       className="container work-section"
       aria-labelledby="work-heading"
     >
-      <SectionHeader aside="01—04">Selected work</SectionHeader>
+      <SectionHeader aside={`01—${String(projects.length).padStart(2, "0")}`}>
+        Selected work
+      </SectionHeader>
       <div className="work-intro">
         <h2 id="work-heading">
           A few things I’ve built,
@@ -155,13 +159,8 @@ export function SelectedWork({
             <button
               key={item}
               aria-pressed={lens === item}
-              onPointerEnter={(event) => {
-                if (event.pointerType === "mouse") setPreview(item);
-              }}
-              onPointerLeave={() => setPreview(null)}
               onClick={() => {
                 setLens(item);
-                setPreview(null);
               }}
             >
               {lens === item && (
@@ -176,19 +175,30 @@ export function SelectedWork({
           ))}
         </div>
         <span className="eyebrow lens-label">
-          A different lens on the same work
+          Most relevant first · All projects stay visible
         </span>
       </div>
+      <p className="sr-only" role="status">
+        {lens === "All"
+          ? "All projects in selected-work order."
+          : `All ${projects.length} projects ordered by ${lens.toLowerCase()} relevance.`}
+      </p>
       <div className="projects">
-        {projects.map((project) => (
-          <InView key={project.id}>
-            <ProjectSection
-              project={project}
-              lens={preview ?? lens}
-              onOpen={onOpen}
-              active={active}
-            />
-          </InView>
+        {projectsForLens(lens).map((project) => (
+          <motion.div
+            key={project.id}
+            layout={reduced ? false : "position"}
+            transition={{ duration: 0.3 }}
+          >
+            <InView>
+              <ProjectSection
+                project={project}
+                lens={lens}
+                onOpen={onOpen}
+                active={active}
+              />
+            </InView>
+          </motion.div>
         ))}
       </div>
     </section>

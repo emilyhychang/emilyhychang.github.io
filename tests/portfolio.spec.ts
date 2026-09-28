@@ -9,6 +9,10 @@ test("case studies preserve scroll and support history, focus and next project",
   const trigger = page.locator("#watchtogether .case-link");
   await trigger.scrollIntoViewIfNeeded();
   await trigger.focus();
+  await expect(page.locator("#watchtogether").locator("..")).toHaveCSS(
+    "transform",
+    "none",
+  );
   const scroll = await page.evaluate(() => window.scrollY);
   await trigger.click();
   const dialog = page.getByRole("dialog");
@@ -54,7 +58,14 @@ test("case studies preserve scroll and support history, focus and next project",
 test("direct links open, close, and reload without a server fallback", async ({
   page,
 }) => {
-  for (const id of ["watchtogether", "f1", "cornerstone", "lma"]) {
+  for (const id of [
+    "watchtogether",
+    "f1",
+    "cornerstone",
+    "lma",
+    "healthcare",
+    "soft-drinks",
+  ]) {
     await page.goto(`/#/work/${id}`);
     await expect(page.getByRole("dialog")).toBeVisible();
     await page.reload();
@@ -76,7 +87,9 @@ test("command search supports keyboard selection, empty results and project open
   const input = page.getByRole("combobox");
   await expect(input).toBeFocused();
   await input.fill("unmatched text");
-  await expect(page.getByRole("status")).toContainText("No matches");
+  await expect(page.getByRole("dialog").getByRole("status")).toContainText(
+    "No matches",
+  );
   await input.fill("f1");
   await page.keyboard.press("ArrowDown");
   await page.keyboard.press("Enter");
@@ -123,8 +136,8 @@ test("preview playback, slide controls and relevance lens work", async ({
     page.getByRole("heading", { name: "Making sense of what’s next." }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Marketing", exact: true }).click();
-  await expect(page.locator(".is-dimmed")).toHaveCount(3);
-  await expect(page.locator("article")).toHaveCount(4);
+  await expect(page.locator(".is-dimmed")).toHaveCount(4);
+  await expect(page.locator("article")).toHaveCount(6);
   await page.getByRole("button", { name: "All", exact: true }).click();
   await expect(page.locator(".is-dimmed")).toHaveCount(0);
 });
@@ -171,4 +184,79 @@ test("reduced motion retains content and disables decorative movement", async ({
   await page.getByRole("button", { name: "Search portfolio" }).click();
   await page.getByRole("combobox").fill("f1");
   await expect(page.locator(".palette-racer")).toHaveCount(0);
+});
+
+test("each lens reorders all six projects and All restores the default order", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const expected = {
+    Product: [
+      "watchtogether",
+      "cornerstone",
+      "f1",
+      "soft-drinks",
+      "lma",
+      "healthcare",
+    ],
+    Engineering: [
+      "f1",
+      "watchtogether",
+      "lma",
+      "healthcare",
+      "cornerstone",
+      "soft-drinks",
+    ],
+    Data: [
+      "healthcare",
+      "f1",
+      "soft-drinks",
+      "lma",
+      "cornerstone",
+      "watchtogether",
+    ],
+    Marketing: [
+      "lma",
+      "soft-drinks",
+      "cornerstone",
+      "f1",
+      "watchtogether",
+      "healthcare",
+    ],
+    Research: [
+      "soft-drinks",
+      "healthcare",
+      "cornerstone",
+      "f1",
+      "watchtogether",
+      "lma",
+    ],
+    All: [
+      "watchtogether",
+      "f1",
+      "cornerstone",
+      "lma",
+      "healthcare",
+      "soft-drinks",
+    ],
+  };
+  for (const [lens, order] of Object.entries(expected)) {
+    const button = page.getByRole("button", { name: lens, exact: true });
+    await button.click();
+    await expect(button).toHaveAttribute("aria-pressed", "true");
+    await expect
+      .poll(() =>
+        page
+          .locator("article")
+          .evaluateAll((items) => items.map((item) => item.id)),
+      )
+      .toEqual(order);
+    await expect(button).toBeFocused();
+  }
+  await page.getByRole("button", { name: "Search portfolio" }).click();
+  await page.getByRole("combobox").fill("soft drinks");
+  await page.keyboard.press("Enter");
+  await expect(
+    page.getByRole("dialog", { name: "Soft Drinks & Behavior" }),
+  ).toBeVisible();
 });

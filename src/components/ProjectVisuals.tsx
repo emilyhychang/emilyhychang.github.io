@@ -1,3 +1,4 @@
+import { HealthcarePreview, BehavioralPreview } from "./ResearchPreviews";
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
 import type { ProjectId } from "../data/portfolio";
@@ -273,6 +274,8 @@ const visuals = {
   f1: F1Telemetry,
   cornerstone: CornerstoneDeck,
   lma: LMAWorkflow,
+  healthcare: HealthcarePreview,
+  "soft-drinks": BehavioralPreview,
 };
 export function ProjectVisual({
   id,

@@ -4,9 +4,11 @@ export const lenses = [
   "Engineering",
   "Data",
   "Marketing",
+  "Research",
 ] as const;
 export type Lens = (typeof lenses)[number];
-export type ProjectId = "watchtogether" | "f1" | "cornerstone" | "lma";
+export type ProjectId =
+  "watchtogether" | "f1" | "cornerstone" | "lma" | "healthcare" | "soft-drinks";
 export interface Project {
   id: ProjectId;
   number: string;
@@ -38,7 +40,7 @@ export const projects: Project[] = [
     title: "Cornerstone",
     statement: "Turning ambiguity into strategy.",
     tags: ["Strategy", "Analytics", "Client"],
-    lenses: ["Product", "Data"],
+    lenses: ["Product", "Data", "Research"],
   },
   {
     id: "lma",
@@ -49,7 +51,74 @@ export const projects: Project[] = [
     tags: ["Marketing", "Automation", "Analytics"],
     lenses: ["Marketing", "Data"],
   },
+  {
+    id: "healthcare",
+    number: "05",
+    title: "Healthcare Spending",
+    statement: "Exploring healthcare spending through data.",
+    tags: ["Data", "Research", "Analytics"],
+    lenses: ["Data", "Research"],
+  },
+  {
+    id: "soft-drinks",
+    number: "06",
+    title: "Soft Drinks & Behavior",
+    statement: "A behavioral research study focused on soft drinks.",
+    tags: ["Research", "Behavior", "Data"],
+    lenses: ["Research", "Data", "Marketing"],
+  },
 ];
+
+// Editorial relevance order; revisit once the two research cases have full content.
+export const projectOrder: Record<Exclude<Lens, "All">, ProjectId[]> = {
+  Product: [
+    "watchtogether",
+    "cornerstone",
+    "f1",
+    "soft-drinks",
+    "lma",
+    "healthcare",
+  ],
+  Engineering: [
+    "f1",
+    "watchtogether",
+    "lma",
+    "healthcare",
+    "cornerstone",
+    "soft-drinks",
+  ],
+  Data: [
+    "healthcare",
+    "f1",
+    "soft-drinks",
+    "lma",
+    "cornerstone",
+    "watchtogether",
+  ],
+  Marketing: [
+    "lma",
+    "soft-drinks",
+    "cornerstone",
+    "f1",
+    "watchtogether",
+    "healthcare",
+  ],
+  Research: [
+    "soft-drinks",
+    "healthcare",
+    "cornerstone",
+    "f1",
+    "watchtogether",
+    "lma",
+  ],
+};
+export function projectsForLens(lens: Lens): Project[] {
+  if (lens === "All") return projects;
+  return [...projects].sort(
+    (a, b) =>
+      projectOrder[lens].indexOf(a.id) - projectOrder[lens].indexOf(b.id),
+  );
+}
 // Replace null values with verified destinations; unavailable links are never fabricated.
 export const links: Record<
   "resume" | "email" | "linkedin" | "github" | "f1Live" | "f1Github",

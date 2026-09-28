@@ -37,6 +37,60 @@ export const caseStudies: Record<ProjectId, CaseSection[]> = {
       prompt: "[Add lessons, open questions, and the next experiment.]",
     },
   ],
+  healthcare: [
+    {
+      id: "problem",
+      title: "The spending question",
+      prompt: "[Add research question, population, and scope.]",
+    },
+    {
+      id: "data",
+      title: "Data & definitions",
+      prompt: "[Add dataset, time period, spending measures, and limitations.]",
+    },
+    {
+      id: "approach",
+      title: "Analytical approach",
+      prompt: "[Add data preparation, methods, and comparison framework.]",
+    },
+    {
+      id: "result",
+      title: "Findings",
+      prompt: "[Add verified findings and supporting visualizations.]",
+    },
+    {
+      id: "reflection",
+      title: "Implications & next questions",
+      prompt: "[Add interpretation, limitations, and future analysis.]",
+    },
+  ],
+  "soft-drinks": [
+    {
+      id: "problem",
+      title: "The behavioral question",
+      prompt: "[Add the soft-drink research question and hypotheses.]",
+    },
+    {
+      id: "research",
+      title: "Study design",
+      prompt: "[Add participants, procedure, measures, and study materials.]",
+    },
+    {
+      id: "approach",
+      title: "Analysis",
+      prompt: "[Add the analysis method and how hypotheses were evaluated.]",
+    },
+    {
+      id: "result",
+      title: "Findings",
+      prompt: "[Add verified results and supporting evidence.]",
+    },
+    {
+      id: "reflection",
+      title: "Interpretation & limitations",
+      prompt: "[Add implications, limitations, and follow-up questions.]",
+    },
+  ],
   f1: f1Sections,
   cornerstone: cornerstoneSections,
   lma: [

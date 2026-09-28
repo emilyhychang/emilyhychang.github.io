@@ -58,13 +58,13 @@ function ExperienceList() {
           View full resume
         </ResourceLink>
       </div>
-      <p className="placeholder experience-note">[Add verified experience]</p>
       <div className="experience-row">
-        <span>[Add period]</span>
-        <h3>[Add company]</h3>
-        <span>[Add role]</span>
+        <span>August–December 2026</span>
+        <h3>LMA Marketing &amp; Advertising</h3>
+        <span>Marketing &amp; Project Management Intern</span>
         <span className="experience-description">
-          [Add one-line description]
+          Supporting marketing projects through content, analytics, and workflow
+          coordination.
         </span>
       </div>
     </section>

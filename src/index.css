@@ -2336,3 +2336,122 @@ html {
     margin-left: -33px;
   }
 }
+.project-healthcare {
+  grid-template-columns: 0.85fr 1.15fr;
+}
+.project-healthcare .project-copy,
+.project-soft-drinks .project-copy {
+  align-self: center;
+}
+.project-soft-drinks {
+  grid-template-columns: 1.15fr 0.85fr;
+}
+.project-soft-drinks .project-art {
+  grid-column: 1;
+  grid-row: 1;
+}
+.project-soft-drinks .project-copy {
+  grid-column: 2;
+}
+.research-visual {
+  min-height: 430px;
+  position: relative;
+  padding: 28px 32px 65px;
+  overflow: hidden;
+}
+.healthcare-visual {
+  background: #e3e7e4;
+  color: #384d47;
+}
+.behavioral-visual {
+  background: #eae4df;
+  color: #594c46;
+}
+.research-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 8px;
+}
+.research-visual h4 {
+  font-size: 34px;
+  font-weight: 450;
+  letter-spacing: -1.2px;
+  line-height: 1.1;
+  margin: 34px 0 28px;
+}
+.research-table > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid #bec9c2;
+  padding: 13px 0;
+  font-size: 11px;
+}
+.research-table > .eyebrow {
+  font-size: 8px;
+}
+.study-outline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  border-top: 1px solid #cfc4bc;
+  padding-top: 24px;
+}
+.study-outline > div > span {
+  font-size: 9px;
+  color: #79685b;
+}
+.study-outline strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 450;
+  margin: 18px 0 10px;
+}
+.study-outline p {
+  font-size: 10px;
+  line-height: 1.6;
+  color: #71665c;
+}
+.accent-healthcare {
+  --case-accent: #496b60;
+}
+.accent-soft-drinks {
+  --case-accent: #806451;
+}
+@media (max-width: 767px) {
+  .lens-selector {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 4px;
+  }
+  .lens-selector button {
+    padding-inline: 13px;
+  }
+  .research-visual {
+    min-height: 360px;
+    padding: 24px 23px 60px;
+  }
+  .research-visual h4 {
+    font-size: 30px;
+  }
+  .study-outline {
+    gap: 12px;
+  }
+  .study-outline strong {
+    font-size: 12px;
+  }
+  .study-outline p {
+    font-size: 9px;
+  }
+}
+@media (max-width: 767px) {
+  .lens-selector {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+  }
+  .lens-selector button {
+    width: 100%;
+  }
+}
