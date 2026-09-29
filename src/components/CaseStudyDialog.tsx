@@ -1,3 +1,8 @@
+import { healthcareOverview } from "../data/healthcareCaseStudy";
+import { pantrypalOverview } from "../data/pantrypalCaseStudy";
+import { HealthcareChart, PantryPalPipeline } from "./ProjectCaseDetails";
+import { behavioralOverview } from "../data/behavioralCaseStudy";
+import { BehavioralCaseVisual } from "./BehavioralCaseDetails";
 import { cornerstoneOverview } from "../data/cornerstoneCaseStudy";
 import {
   CornerstoneCaseVisual,
@@ -169,6 +174,19 @@ export function CaseStudyDialog({
                 <p className="case-draft">
                   Mud Lily Clay / Website redesign and analytics review
                 </p>
+              ) : project.id === "soft-drinks" ? (
+                <p className="case-draft">
+                  The Power of Popularity / A randomized beverage-choice
+                  experiment
+                </p>
+              ) : project.id === "healthcare" ? (
+                <p className="case-draft">
+                  Healthcare Spending / An exploratory cross-country analysis
+                </p>
+              ) : project.id === "pantrypal" ? (
+                <p className="case-draft">
+                  AI’m Your Chef! / A team-built recipe recommendation prototype
+                </p>
               ) : (
                 <p className="case-draft">
                   Case study in progress · Content placeholders are marked
@@ -193,10 +211,16 @@ export function CaseStudyDialog({
                   ? f1Overview
                   : project.id === "cornerstone"
                     ? cornerstoneOverview
-                    : ["Role", "Timeline", "Tools"].map((label) => ({
-                        label,
-                        value: `[Add ${label.toLowerCase()}]`,
-                      }))
+                    : project.id === "soft-drinks"
+                      ? behavioralOverview
+                      : project.id === "healthcare"
+                        ? healthcareOverview
+                        : project.id === "pantrypal"
+                          ? pantrypalOverview
+                          : ["Role", "Timeline", "Tools"].map((label) => ({
+                              label,
+                              value: `[Add ${label.toLowerCase()}]`,
+                            }))
                 ).map(({ label, value }) => (
                   <div key={label}>
                     <span className="eyebrow">{label}</span>
@@ -204,6 +228,28 @@ export function CaseStudyDialog({
                   </div>
                 ))}
               </div>
+              {(project.id === "healthcare" || project.id === "pantrypal") && (
+                <div className="project-links">
+                  <ResourceLink
+                    href={
+                      project.id === "healthcare"
+                        ? links.healthcareGithub
+                        : links.pantrypalGithub
+                    }
+                    placeholder="Add URL"
+                  >
+                    GitHub repository
+                  </ResourceLink>
+                  {project.id === "pantrypal" && (
+                    <ResourceLink
+                      href={links.pantrypalDemo}
+                      placeholder="Add URL"
+                    >
+                      Watch demo
+                    </ResourceLink>
+                  )}
+                </div>
+              )}
               {project.id === "f1" && (
                 <div className="project-links">
                   <ResourceLink href={links.f1Live} placeholder="Add URL">
@@ -233,6 +279,19 @@ export function CaseStudyDialog({
                     </div>
                   ) : (
                     <p className="case-placeholder">{section.prompt}</p>
+                  )}
+                  {project.id === "soft-drinks" &&
+                    section.id === "research" && (
+                      <BehavioralCaseVisual kind="materials" />
+                    )}
+                  {project.id === "soft-drinks" && section.id === "result" && (
+                    <BehavioralCaseVisual kind="results" />
+                  )}
+                  {project.id === "healthcare" && section.id === "result" && (
+                    <HealthcareChart />
+                  )}
+                  {project.id === "pantrypal" && section.id === "approach" && (
+                    <PantryPalPipeline />
                   )}
                   {project.id === "watchtogether" &&
                     section.id === "decisions" && <DecisionDisclosure />}

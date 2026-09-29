@@ -1,3 +1,4 @@
+import { PantryPalPreview } from "./ProjectCaseDetails";
 import { HealthcarePreview, BehavioralPreview } from "./ResearchPreviews";
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
@@ -275,6 +276,7 @@ const visuals = {
   cornerstone: CornerstoneDeck,
   lma: LMAWorkflow,
   healthcare: HealthcarePreview,
+  pantrypal: PantryPalPreview,
   "soft-drinks": BehavioralPreview,
 };
 export function ProjectVisual({

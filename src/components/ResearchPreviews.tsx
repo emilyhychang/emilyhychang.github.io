@@ -6,9 +6,9 @@ export function HealthcarePreview() {
         <span>Analysis / 05</span>
       </div>
       <h4>
-        Understanding
+        More spending.
         <br />
-        the cost of care.
+        Better outcomes?
       </h4>
       <div className="research-table">
         <div className="eyebrow">
@@ -16,19 +16,17 @@ export function HealthcarePreview() {
           <span>Comparison</span>
         </div>
         {[
-          "[Add spending measure]",
-          "[Add population]",
-          "[Add time period]",
-        ].map((label) => (
+          ["Period", "2000–2019"],
+          ["Indicators", "Four quality proxies"],
+          ["Sources", "OECD / World Bank"],
+        ].map(([label, value]) => (
           <div key={label}>
             <span>{label}</span>
-            <span>—</span>
+            <span>{value}</span>
           </div>
         ))}
       </div>
-      <span className="visual-caption">
-        Study preview · [Add data visualization]
-      </span>
+      <span className="visual-caption">Cross-country analysis · Python</span>
     </div>
   );
 }
@@ -40,14 +38,15 @@ export function BehavioralPreview() {
         <span>Study / 06</span>
       </div>
       <h4>
-        Soft drinks.
-        <br />A closer look.
+        The power
+        <br />
+        of popularity.
       </h4>
       <div className="study-outline">
         {[
-          ["01", "Question", "[Add hypothesis]"],
-          ["02", "Method", "[Add study design]"],
-          ["03", "Evidence", "[Add findings]"],
+          ["01", "Question", "Can a label change a choice?"],
+          ["02", "Method", "108 participants · Two conditions"],
+          ["03", "Finding", "Higher Coke selection; inconclusive evidence"],
         ].map(([number, title, detail]) => (
           <div key={number}>
             <span>{number}</span>
@@ -59,7 +58,7 @@ export function BehavioralPreview() {
         ))}
       </div>
       <span className="visual-caption">
-        Study preview · [Add research materials]
+        Qualtrics experiment · UC San Diego
       </span>
     </div>
   );

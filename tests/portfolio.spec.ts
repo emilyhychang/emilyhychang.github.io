@@ -65,6 +65,7 @@ test("direct links open, close, and reload without a server fallback", async ({
     "lma",
     "healthcare",
     "soft-drinks",
+    "pantrypal",
   ]) {
     await page.goto(`/#/work/${id}`);
     await expect(page.getByRole("dialog")).toBeVisible();
@@ -136,8 +137,8 @@ test("preview playback, slide controls and relevance lens work", async ({
     page.getByRole("heading", { name: "Making sense of what’s next." }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Marketing", exact: true }).click();
-  await expect(page.locator(".is-dimmed")).toHaveCount(4);
-  await expect(page.locator("article")).toHaveCount(6);
+  await expect(page.locator(".is-dimmed")).toHaveCount(5);
+  await expect(page.locator("article")).toHaveCount(7);
   await page.getByRole("button", { name: "All", exact: true }).click();
   await expect(page.locator(".is-dimmed")).toHaveCount(0);
 });
@@ -186,13 +187,14 @@ test("reduced motion retains content and disables decorative movement", async ({
   await expect(page.locator(".palette-racer")).toHaveCount(0);
 });
 
-test("each lens reorders all six projects and All restores the default order", async ({
+test("each lens reorders all seven projects and All restores the default order", async ({
   page,
 }) => {
   await page.goto("/");
   const expected = {
     Product: [
       "watchtogether",
+      "pantrypal",
       "cornerstone",
       "f1",
       "soft-drinks",
@@ -201,6 +203,7 @@ test("each lens reorders all six projects and All restores the default order", a
     ],
     Engineering: [
       "f1",
+      "pantrypal",
       "watchtogether",
       "lma",
       "healthcare",
@@ -210,6 +213,7 @@ test("each lens reorders all six projects and All restores the default order", a
     Data: [
       "healthcare",
       "f1",
+      "pantrypal",
       "soft-drinks",
       "lma",
       "cornerstone",
@@ -222,10 +226,12 @@ test("each lens reorders all six projects and All restores the default order", a
       "f1",
       "watchtogether",
       "healthcare",
+      "pantrypal",
     ],
     Research: [
       "soft-drinks",
       "healthcare",
+      "pantrypal",
       "cornerstone",
       "f1",
       "watchtogether",
@@ -238,6 +244,7 @@ test("each lens reorders all six projects and All restores the default order", a
       "lma",
       "healthcare",
       "soft-drinks",
+      "pantrypal",
     ],
   };
   for (const [lens, order] of Object.entries(expected)) {

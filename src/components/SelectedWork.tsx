@@ -74,6 +74,25 @@ function ProjectSection({
             </ResourceLink>
           </div>
         )}
+        {(project.id === "healthcare" || project.id === "pantrypal") && (
+          <div className="project-links">
+            <ResourceLink
+              href={
+                project.id === "healthcare"
+                  ? links.healthcareGithub
+                  : links.pantrypalGithub
+              }
+              placeholder="Add URL"
+            >
+              GitHub
+            </ResourceLink>
+            {project.id === "pantrypal" && (
+              <ResourceLink href={links.pantrypalDemo} placeholder="Add URL">
+                Watch demo
+              </ResourceLink>
+            )}
+          </div>
+        )}
         {project.id === "cornerstone" && (
           <p className="process-line">
             Research <span>→</span> Analysis <span>→</span>
@@ -94,6 +113,7 @@ function ProjectSection({
               cornerstone: "View deck",
               lma: "See work",
               healthcare: "View analysis",
+              pantrypal: "Explore recipes",
               "soft-drinks": "View research",
             }[project.id]
           }
@@ -108,7 +128,13 @@ function ProjectSection({
             ? "SCUDERIA 16 · JavaScript / Python / Data visualization"
             : project.id === "cornerstone"
               ? "Mud Lily Clay · Website redesign / Analytics"
-              : "[Add project detail]"}
+              : project.id === "soft-drinks"
+                ? "UC San Diego · Behavioral experiment / 108 participants"
+                : project.id === "healthcare"
+                  ? "OECD / World Bank · Python / 2000–2019"
+                  : project.id === "pantrypal"
+                    ? "Team project · NLP / Recipe filtering"
+                    : "[Add project detail]"}
         </span>
         <Magnetic>
           <button className="case-link" onClick={() => onOpen(project.id)}>

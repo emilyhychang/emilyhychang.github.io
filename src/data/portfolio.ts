@@ -8,7 +8,13 @@ export const lenses = [
 ] as const;
 export type Lens = (typeof lenses)[number];
 export type ProjectId =
-  "watchtogether" | "f1" | "cornerstone" | "lma" | "healthcare" | "soft-drinks";
+  | "watchtogether"
+  | "f1"
+  | "cornerstone"
+  | "lma"
+  | "healthcare"
+  | "soft-drinks"
+  | "pantrypal";
 export interface Project {
   id: ProjectId;
   number: string;
@@ -55,7 +61,8 @@ export const projects: Project[] = [
     id: "healthcare",
     number: "05",
     title: "Healthcare Spending",
-    statement: "Exploring healthcare spending through data.",
+    statement:
+      "Exploring how healthcare spending relates to outcomes across OECD countries.",
     tags: ["Data", "Research", "Analytics"],
     lenses: ["Data", "Research"],
   },
@@ -63,16 +70,25 @@ export const projects: Project[] = [
     id: "soft-drinks",
     number: "06",
     title: "Soft Drinks & Behavior",
-    statement: "A behavioral research study focused on soft drinks.",
+    statement: "Testing whether a popularity label changes what people choose.",
     tags: ["Research", "Behavior", "Data"],
     lenses: ["Research", "Data", "Marketing"],
   },
+  {
+    id: "pantrypal",
+    number: "07",
+    title: "PantryPal",
+    statement: "Finding recipes that fit the ingredients you want to use.",
+    tags: ["Product", "Engineering", "Data"],
+    lenses: ["Product", "Engineering", "Data", "Research"],
+  },
 ];
 
-// Editorial relevance order; revisit once the two research cases have full content.
+// Editorial relevance order; revisit as project scope develops.
 export const projectOrder: Record<Exclude<Lens, "All">, ProjectId[]> = {
   Product: [
     "watchtogether",
+    "pantrypal",
     "cornerstone",
     "f1",
     "soft-drinks",
@@ -81,6 +97,7 @@ export const projectOrder: Record<Exclude<Lens, "All">, ProjectId[]> = {
   ],
   Engineering: [
     "f1",
+    "pantrypal",
     "watchtogether",
     "lma",
     "healthcare",
@@ -90,6 +107,7 @@ export const projectOrder: Record<Exclude<Lens, "All">, ProjectId[]> = {
   Data: [
     "healthcare",
     "f1",
+    "pantrypal",
     "soft-drinks",
     "lma",
     "cornerstone",
@@ -102,10 +120,12 @@ export const projectOrder: Record<Exclude<Lens, "All">, ProjectId[]> = {
     "f1",
     "watchtogether",
     "healthcare",
+    "pantrypal",
   ],
   Research: [
     "soft-drinks",
     "healthcare",
+    "pantrypal",
     "cornerstone",
     "f1",
     "watchtogether",
@@ -121,13 +141,25 @@ export function projectsForLens(lens: Lens): Project[] {
 }
 // Replace null values with verified destinations; unavailable links are never fabricated.
 export const links: Record<
-  "resume" | "email" | "linkedin" | "github" | "f1Live" | "f1Github",
+  | "resume"
+  | "email"
+  | "linkedin"
+  | "github"
+  | "f1Live"
+  | "f1Github"
+  | "healthcareGithub"
+  | "pantrypalGithub"
+  | "pantrypalDemo",
   string | null
 > = {
   resume: `${import.meta.env.BASE_URL}Emily_Chang_Resume.pdf`,
   email: "mailto:emilyhychang@gmail.com",
   linkedin: "https://www.linkedin.com/in/emilyhychang/",
   github: "https://github.com/emilyhychang",
+  healthcareGithub:
+    "https://github.com/emilyhychang/OECD_healthcare_spending_analysis",
+  pantrypalGithub: "https://github.com/emilyhychang/PantryPal-Ai-m-Your-Chef",
+  pantrypalDemo: "https://youtu.be/oykcuiW10n4",
   f1Live: "https://emilyhychang.github.io/f1-site/",
   f1Github: "https://github.com/emilyhychang/f1-site",
 };
