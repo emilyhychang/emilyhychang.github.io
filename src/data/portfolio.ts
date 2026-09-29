@@ -14,7 +14,8 @@ export type ProjectId =
   | "lma"
   | "healthcare"
   | "soft-drinks"
-  | "pantrypal";
+  | "pantrypal"
+  | "smart-basket";
 export interface Project {
   id: ProjectId;
   number: string;
@@ -82,11 +83,20 @@ export const projects: Project[] = [
     tags: ["Product", "Engineering", "Data"],
     lenses: ["Product", "Engineering", "Data", "Research"],
   },
+  {
+    id: "smart-basket",
+    number: "08",
+    title: "Smart Basket",
+    statement: "Turning EBT balances into grocery plans.",
+    tags: ["Product", "UX", "Research"],
+    lenses: ["Product", "Research"],
+  },
 ];
 
 // Editorial relevance order; revisit as project scope develops.
 export const projectOrder: Record<Exclude<Lens, "All">, ProjectId[]> = {
   Product: [
+    "smart-basket",
     "watchtogether",
     "pantrypal",
     "cornerstone",
@@ -103,6 +113,7 @@ export const projectOrder: Record<Exclude<Lens, "All">, ProjectId[]> = {
     "healthcare",
     "cornerstone",
     "soft-drinks",
+    "smart-basket",
   ],
   Data: [
     "healthcare",
@@ -112,6 +123,7 @@ export const projectOrder: Record<Exclude<Lens, "All">, ProjectId[]> = {
     "lma",
     "cornerstone",
     "watchtogether",
+    "smart-basket",
   ],
   Marketing: [
     "lma",
@@ -121,8 +133,10 @@ export const projectOrder: Record<Exclude<Lens, "All">, ProjectId[]> = {
     "watchtogether",
     "healthcare",
     "pantrypal",
+    "smart-basket",
   ],
   Research: [
+    "smart-basket",
     "soft-drinks",
     "healthcare",
     "pantrypal",
@@ -149,9 +163,12 @@ export const links: Record<
   | "f1Github"
   | "healthcareGithub"
   | "pantrypalGithub"
-  | "pantrypalDemo",
+  | "pantrypalDemo"
+  | "smartBasketCase",
   string | null
 > = {
+  smartBasketCase:
+    "https://recondite-asteroid-9e8.notion.site/Turning-EBT-Balances-Into-Grocery-Plans-918840d0da8582378b5701159c961423",
   resume: `${import.meta.env.BASE_URL}Emily_Chang_Resume.pdf`,
   email: "mailto:emilyhychang@gmail.com",
   linkedin: "https://www.linkedin.com/in/emilyhychang/",

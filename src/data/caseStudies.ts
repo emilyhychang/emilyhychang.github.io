@@ -1,3 +1,4 @@
+import { smartBasketSections } from "./smartBasketCaseStudy";
 import { healthcareSections } from "./healthcareCaseStudy";
 import { pantrypalSections } from "./pantrypalCaseStudy";
 import { behavioralSections } from "./behavioralCaseStudy";
@@ -42,6 +43,7 @@ export const caseStudies: Record<ProjectId, CaseSection[]> = {
   ],
   healthcare: healthcareSections,
   pantrypal: pantrypalSections,
+  "smart-basket": smartBasketSections,
   "soft-drinks": behavioralSections,
   f1: f1Sections,
   cornerstone: cornerstoneSections,

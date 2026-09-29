@@ -2537,3 +2537,63 @@ html {
     font-size: 12px;
   }
 }
+
+.project-smart-basket {
+  grid-template-columns: 1.15fr 0.85fr;
+}
+.project-smart-basket .project-art {
+  grid-column: 1;
+  grid-row: 1;
+}
+.project-smart-basket .project-copy {
+  grid-column: 2;
+  align-self: center;
+}
+.smart-basket-visual {
+  background: #e0ebef;
+  color: #275467;
+}
+.accent-smart-basket {
+  --case-accent: #275467;
+}
+.basket-tools {
+  border-top: 1px solid #b3cbd4;
+}
+.basket-tools > div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #b3cbd4;
+}
+.basket-tools span {
+  font-size: 10px;
+}
+.basket-tools strong {
+  font-size: 14px;
+  font-weight: 450;
+  flex: 1;
+}
+@media (max-width: 767px) {
+  .project-smart-basket {
+    grid-template-columns: 1fr;
+  }
+  .project-smart-basket .project-art,
+  .project-smart-basket .project-copy {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+.basket-comparisons h4 {
+  font-size: 22px;
+  font-weight: 450;
+  letter-spacing: -0.5px;
+  margin: 0 0 12px;
+}
+.basket-comparisons .eyebrow {
+  margin-bottom: 16px;
+}
+.basket-comparisons figure + figure {
+  margin-top: 48px;
+}

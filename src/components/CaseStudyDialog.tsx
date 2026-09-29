@@ -1,3 +1,8 @@
+import { smartBasketOverview } from "../data/smartBasketCaseStudy";
+import {
+  SmartBasketWorkflow,
+  SmartBasketComparisons,
+} from "./SmartBasketDetails";
 import { healthcareOverview } from "../data/healthcareCaseStudy";
 import { pantrypalOverview } from "../data/pantrypalCaseStudy";
 import { HealthcareChart, PantryPalPipeline } from "./ProjectCaseDetails";
@@ -187,6 +192,10 @@ export function CaseStudyDialog({
                 <p className="case-draft">
                   AI’m Your Chef! / A team-built recipe recommendation prototype
                 </p>
+              ) : project.id === "smart-basket" ? (
+                <p className="case-draft">
+                  Smart Basket for ebtEDGE / A team-designed mobile extension
+                </p>
               ) : (
                 <p className="case-draft">
                   Case study in progress · Content placeholders are marked
@@ -217,10 +226,12 @@ export function CaseStudyDialog({
                         ? healthcareOverview
                         : project.id === "pantrypal"
                           ? pantrypalOverview
-                          : ["Role", "Timeline", "Tools"].map((label) => ({
-                              label,
-                              value: `[Add ${label.toLowerCase()}]`,
-                            }))
+                          : project.id === "smart-basket"
+                            ? smartBasketOverview
+                            : ["Role", "Timeline", "Tools"].map((label) => ({
+                                label,
+                                value: `[Add ${label.toLowerCase()}]`,
+                              }))
                 ).map(({ label, value }) => (
                   <div key={label}>
                     <span className="eyebrow">{label}</span>
@@ -248,6 +259,16 @@ export function CaseStudyDialog({
                       Watch demo
                     </ResourceLink>
                   )}
+                </div>
+              )}
+              {project.id === "smart-basket" && (
+                <div className="project-links">
+                  <ResourceLink
+                    href={links.smartBasketCase}
+                    placeholder="Add URL"
+                  >
+                    Original case study
+                  </ResourceLink>
                 </div>
               )}
               {project.id === "f1" && (
@@ -293,6 +314,13 @@ export function CaseStudyDialog({
                   {project.id === "pantrypal" && section.id === "approach" && (
                     <PantryPalPipeline />
                   )}
+                  {project.id === "smart-basket" &&
+                    section.id === "iteration" && (
+                      <>
+                        <SmartBasketComparisons />
+                        <SmartBasketWorkflow />
+                      </>
+                    )}
                   {project.id === "watchtogether" &&
                     section.id === "decisions" && <DecisionDisclosure />}
                   {project.id === "cornerstone" &&

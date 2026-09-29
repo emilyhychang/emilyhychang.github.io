@@ -114,6 +114,7 @@ function ProjectSection({
               lma: "See work",
               healthcare: "View analysis",
               pantrypal: "Explore recipes",
+              "smart-basket": "View design",
               "soft-drinks": "View research",
             }[project.id]
           }
@@ -134,7 +135,9 @@ function ProjectSection({
                   ? "OECD / World Bank · Python / 2000–2019"
                   : project.id === "pantrypal"
                     ? "Team project · NLP / Recipe filtering"
-                    : "[Add project detail]"}
+                    : project.id === "smart-basket"
+                      ? "Spring 2026 · UI/UX design / User research"
+                      : "[Add project detail]"}
         </span>
         <Magnetic>
           <button className="case-link" onClick={() => onOpen(project.id)}>

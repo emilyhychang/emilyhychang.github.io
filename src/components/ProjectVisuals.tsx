@@ -1,3 +1,4 @@
+import { SmartBasketPreview } from "./SmartBasketDetails";
 import { PantryPalPreview } from "./ProjectCaseDetails";
 import { HealthcarePreview, BehavioralPreview } from "./ResearchPreviews";
 import { useEffect, useRef, useState } from "react";
@@ -277,6 +278,7 @@ const visuals = {
   lma: LMAWorkflow,
   healthcare: HealthcarePreview,
   pantrypal: PantryPalPreview,
+  "smart-basket": SmartBasketPreview,
   "soft-drinks": BehavioralPreview,
 };
 export function ProjectVisual({
