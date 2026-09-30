@@ -74,10 +74,12 @@ function DecisionDisclosure() {
 }
 export function CaseStudyDialog({
   project,
+  returnLabel,
   onClose,
   onNext,
 }: {
   project: Project;
+  returnLabel: string;
   onClose: () => void;
   onNext: (id: Project["id"]) => void;
 }) {
@@ -139,7 +141,7 @@ export function CaseStudyDialog({
       >
         <header className="case-header">
           <Magnetic>
-            <button onClick={onClose}>← All work</button>
+            <button onClick={onClose}>{returnLabel}</button>
           </Magnetic>
           <span className="eyebrow">
             {project.number} / {project.title}

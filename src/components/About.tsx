@@ -17,16 +17,14 @@ export function About() {
         <span className="muted">instructions.</span>
       </h2>
       <div className="about-grid">
-        <div
-          className="portrait-placeholder"
-          role="img"
-          aria-label="Portrait placeholder: add a photo of Emily"
-        >
-          <span className="portrait-corner">FIG. 01 / EMILY</span>
-          <span className="portrait-monogram" aria-hidden="true">
-            ec.
-          </span>
-          <span className="portrait-caption">[Add portrait]</span>
+        <div className="about-portrait">
+          <img
+            src={`${import.meta.env.BASE_URL}images/about/emily.jpg`}
+            alt="Emily sitting at a café, resting her chin on her hand."
+            width="768"
+            height="1024"
+            loading="lazy"
+          />
         </div>
         <div className="about-copy">
           <p className="about-lead">
@@ -41,6 +39,7 @@ export function About() {
           <p>I tend to learn by making things.</p>
           <p className="placeholder">[Add a personal sentence]</p>
           <span className="about-signoff">Always a work in progress.</span>
+          <Currently />
         </div>
       </div>
     </section>
@@ -70,9 +69,12 @@ function ExperienceList() {
     </section>
   );
 }
-function ToolsGrid() {
+export function ToolsGrid() {
   return (
-    <section className="tools-section" aria-labelledby="tools-heading">
+    <section
+      className="container tools-section"
+      aria-labelledby="tools-heading"
+    >
       <h2 id="tools-heading" className="eyebrow">
         Tools I work with
       </h2>
@@ -95,9 +97,7 @@ function ToolsGrid() {
 function Currently() {
   return (
     <section className="currently-section" aria-labelledby="currently-heading">
-      <h2 id="currently-heading" className="eyebrow">
-        Currently
-      </h2>
+      <h2 id="currently-heading">Currently</h2>
       <dl>
         <div>
           <dt>Building</dt>
@@ -126,10 +126,6 @@ export function Background() {
   return (
     <div className="container background-section">
       <ExperienceList />
-      <div className="background-grid">
-        <ToolsGrid />
-        <Currently />
-      </div>
     </div>
   );
 }

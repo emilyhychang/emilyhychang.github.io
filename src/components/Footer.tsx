@@ -7,7 +7,21 @@ export function Footer() {
       <div className="container">
         <div className="section-header">
           <span>Good things start with a conversation</span>
-          <a href="#top">Back to top ↑</a>
+          <a
+            href="#top"
+            onClick={(event) => {
+              event.preventDefault();
+              window.scrollTo({
+                top: 0,
+                behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
+                  .matches
+                  ? "instant"
+                  : "smooth",
+              });
+            }}
+          >
+            Back to top ↑
+          </a>
         </div>
         <div className="footer-main">
           <h2>

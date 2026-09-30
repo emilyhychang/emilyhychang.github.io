@@ -765,7 +765,7 @@ html {
 .about-section {
   padding-top: 18px;
 }
-.about-section h2 {
+.about-section > h2 {
   font-size: clamp(46px, 5.6vw, 80px);
   font-weight: 450;
   letter-spacing: -0.065em;
@@ -863,16 +863,17 @@ html {
   padding: 25px 0 32px;
   border-bottom: 1px solid var(--line);
   align-items: center;
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 1.6;
   color: var(--muted);
 }
 .experience-row h3 {
-  font-weight: 450;
-  font-size: 18px;
+  font-weight: 500;
+  font-size: inherit;
   color: var(--ink);
 }
 .experience-description {
-  font-size: 10px;
+  font-size: inherit;
 }
 .background-grid {
   display: grid;
@@ -1352,7 +1353,7 @@ html {
   .about-section {
     padding-top: 5px;
   }
-  .about-section h2 {
+  .about-section > h2 {
     font-size: 43px;
     margin: 35px 0 35px;
   }
@@ -1391,13 +1392,13 @@ html {
   .experience-row {
     grid-template-columns: 1fr 1fr;
     row-gap: 17px;
-    font-size: 11px;
+    font-size: 14px;
   }
   .experience-row h3 {
-    font-size: 17px;
+    font-size: inherit;
   }
   .experience-description {
-    font-size: 10px;
+    font-size: inherit;
   }
   .background-grid {
     grid-template-columns: 1fr;
@@ -2596,4 +2597,316 @@ html {
 }
 .basket-comparisons figure + figure {
   margin-top: 48px;
+}
+
+/* The full collection lives on its own page; the home gallery is a native scroller. */
+.projects-page {
+  padding-top: 90px;
+}
+.projects-page-heading {
+  padding-block: 60px 65px;
+}
+.projects-page-heading > a {
+  font-size: 12px;
+  color: var(--muted);
+}
+.projects-page-heading h1 {
+  font-size: clamp(64px, 10vw, 140px);
+  line-height: 1;
+  font-weight: 450;
+  letter-spacing: -0.065em;
+  margin: 35px 0 25px;
+}
+.projects-page-heading h1 span {
+  color: #7d856c;
+}
+.projects-page-heading > p {
+  font-size: 18px;
+  color: var(--muted);
+}
+.projects-page .work-section {
+  padding-top: 0;
+}
+.projects-page .lens-row {
+  margin-top: 32px;
+}
+.nav-links a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.home-gallery {
+  padding: 100px 0 110px;
+  overflow: hidden;
+}
+.gallery-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 44px;
+  border-top: 1px solid var(--line);
+  padding-top: 28px;
+}
+.gallery-heading h2 {
+  font-size: clamp(44px, 5.8vw, 78px);
+  line-height: 1.03;
+  letter-spacing: -0.055em;
+  font-weight: 450;
+  margin-top: 25px;
+}
+.gallery-heading em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+.all-projects-link {
+  font-size: 13px;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 10px;
+  white-space: nowrap;
+}
+.all-projects-link span {
+  margin-left: 28px;
+}
+.project-gallery-rail {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding: 8px max(56px, calc((100vw - 1280px) / 2)) 28px;
+  scrollbar-width: thin;
+  scrollbar-color: #9d9f90 transparent;
+  scroll-padding-inline: max(56px, calc((100vw - 1280px) / 2));
+  overscroll-behavior-x: contain;
+}
+.project-gallery-rail:focus-visible {
+  outline: 2px solid #7d856c;
+  outline-offset: -2px;
+}
+.gallery-card {
+  flex: 0 0 min(520px, 70vw);
+  background: transparent;
+  text-align: left;
+  padding: 0;
+}
+.gallery-card:focus-visible {
+  outline-offset: 4px;
+}
+.gallery-cover {
+  height: 340px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36px;
+  overflow: hidden;
+  background: #e1e6e7;
+}
+.gallery-cover img {
+  display: block;
+  width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  box-shadow: 0 10px 22px #0000000d;
+}
+.gallery-card:hover .gallery-cover img {
+  transform: scale(1.035);
+}
+.gallery-cover-label {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.gallery-open {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  border-radius: 50%;
+  font-size: 17px;
+}
+.gallery-watchtogether .gallery-cover {
+  background: #dfe6ea;
+  padding: 0;
+}
+.gallery-watchtogether .gallery-cover img,
+.gallery-lma .gallery-cover img,
+.gallery-pantrypal .gallery-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: none;
+}
+.gallery-lma .gallery-cover,
+.gallery-pantrypal .gallery-cover {
+  padding: 0;
+}
+.gallery-f1 .gallery-cover {
+  background: #d9dedf;
+}
+.gallery-cornerstone .gallery-cover {
+  background: #e4e5dc;
+}
+.gallery-healthcare .gallery-cover {
+  background: #e3e7e4;
+  padding: 25px 45px;
+}
+.gallery-soft-drinks .gallery-cover {
+  background: #e4e8dc;
+  padding: 24px;
+}
+.gallery-smart-basket .gallery-cover {
+  background: #dbe8ee;
+  padding: 25px 35px;
+}
+.gallery-card-meta {
+  padding: 22px 0 0;
+}
+.gallery-card-meta > .eyebrow {
+  font-size: 9px;
+  color: var(--muted);
+}
+.gallery-card h3 {
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.9px;
+  font-weight: 450;
+  margin: 12px 0 10px;
+}
+.gallery-card-meta p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 420px;
+}
+.gallery-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  gap: 20px;
+}
+.gallery-footer > p {
+  font-size: 11px;
+  color: var(--muted);
+}
+.gallery-footer > p > span {
+  margin-left: 14px;
+}
+.gallery-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.gallery-controls > span {
+  margin-right: 18px;
+}
+.gallery-controls button {
+  height: 44px;
+  width: 44px;
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 50%;
+  font-size: 19px;
+}
+.gallery-controls button:hover:not(:disabled) {
+  background: #e5e7dc;
+}
+.gallery-controls button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+@media (max-width: 767px) {
+  .projects-page {
+    padding-top: 60px;
+  }
+  .projects-page-heading {
+    padding-block: 35px 45px;
+  }
+  .home-gallery {
+    padding-block: 60px;
+  }
+  .gallery-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .project-gallery-rail {
+    padding-inline: 20px;
+    scroll-padding-inline: 20px;
+    gap: 24px;
+  }
+  .gallery-card {
+    flex-basis: 84vw;
+  }
+  .gallery-cover {
+    height: 250px;
+    padding: 20px;
+  }
+  .gallery-card h3 {
+    font-size: 23px;
+  }
+  .gallery-healthcare .gallery-cover,
+  .gallery-smart-basket .gallery-cover {
+    padding: 20px;
+  }
+  .gallery-controls > span {
+    margin-right: 4px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery-cover img {
+    transition: none;
+  }
+}
+
+.about-copy .currently-section {
+  margin-top: 36px;
+}
+.tools-section {
+  border-top: 1px solid var(--line);
+  padding-top: 28px;
+  padding-bottom: 80px;
+}
+@media (max-width: 767px) {
+  .tools-section {
+    padding-bottom: 50px;
+  }
+}
+
+.currently-section h2 {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  text-transform: none;
+  margin: 0;
+}
+
+.about-portrait {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #e7e5df;
+}
+.about-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 72%;
+  transform: scale(1.25);
+  transform-origin: 50% 72%;
+}
+@media (max-width: 767px) {
+  .about-portrait {
+    max-width: 480px;
+  }
 }

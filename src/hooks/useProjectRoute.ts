@@ -1,13 +1,22 @@
 import { useEffect, useState } from "react";
 import { projects, type ProjectId } from "../data/portfolio";
-function readProject() {
+export type PortfolioPage = "home" | "projects";
+function readRoute() {
   const slug = window.location.hash.match(/^#\/work\/([^/]+)$/)?.[1];
-  return projects.find((project) => project.id === slug)?.id ?? null;
+  const projectId = projects.find((project) => project.id === slug)?.id ?? null;
+  const page: PortfolioPage = projectId
+    ? window.history.state?.portfolioPage === "home"
+      ? "home"
+      : "projects"
+    : window.location.hash === "#/projects"
+      ? "projects"
+      : "home";
+  return { projectId, page };
 }
 export function useProjectRoute() {
-  const [projectId, setProjectId] = useState<ProjectId | null>(readProject);
+  const [route, setRoute] = useState(readRoute);
   useEffect(() => {
-    const sync = () => setProjectId(readProject());
+    const sync = () => setRoute(readRoute());
     window.addEventListener("popstate", sync);
     window.addEventListener("hashchange", sync);
     return () => {
@@ -16,19 +25,22 @@ export function useProjectRoute() {
     };
   }, []);
   const openProject = (id: ProjectId) => {
-    // Preserve the home entry, so closing any next-project sequence returns home.
-    if (readProject())
+    if (readRoute().projectId)
       window.history.replaceState(window.history.state, "", `#/work/${id}`);
     else
-      window.history.pushState({ portfolioOverlay: true }, "", `#/work/${id}`);
-    setProjectId(id);
+      window.history.pushState(
+        { portfolioOverlay: true, portfolioPage: route.page },
+        "",
+        `#/work/${id}`,
+      );
+    setRoute(readRoute());
   };
   const closeProject = () => {
     if (window.history.state?.portfolioOverlay) window.history.back();
     else {
-      window.history.replaceState(null, "", "#work");
-      setProjectId(null);
+      window.history.replaceState(null, "", "#/projects");
+      setRoute(readRoute());
     }
   };
-  return { projectId, openProject, closeProject };
+  return { ...route, openProject, closeProject };
 }

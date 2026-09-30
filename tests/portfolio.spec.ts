@@ -5,7 +5,7 @@ test("case studies preserve scroll and support history, focus and next project",
 }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto("/");
+  await page.goto("/#/projects");
   const trigger = page.locator("#watchtogether .case-link");
   await trigger.scrollIntoViewIfNeeded();
   await trigger.focus();
@@ -74,7 +74,7 @@ test("direct links open, close, and reload without a server fallback", async ({
     await expect(page.getByRole("dialog")).toBeVisible();
     await page.getByRole("button", { name: "Close case study" }).click();
     await expect(page.getByRole("dialog")).toHaveCount(0);
-    await expect(page).toHaveURL(/#work$/);
+    await expect(page).toHaveURL(/#\/projects$/);
   }
 });
 
@@ -114,7 +114,7 @@ test("command search supports keyboard selection, empty results and project open
 test("preview playback, slide controls and relevance lens work", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/#/projects");
   await page.getByRole("button", { name: "Play demo" }).click();
   await expect(page.getByRole("button", { name: "Pause demo" })).toBeVisible();
   await expect
@@ -191,7 +191,7 @@ test("reduced motion retains content and disables decorative movement", async ({
 test("each lens reorders all eight projects and All restores the default order", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/#/projects");
   const expected = {
     Product: [
       "smart-basket",
@@ -273,4 +273,112 @@ test("each lens reorders all eight projects and All restores the default order",
   await expect(
     page.getByRole("dialog", { name: "Soft Drinks & Behavior" }),
   ).toBeVisible();
+});
+
+test("home gallery supports trackpad, wheel, keyboard and case-study return", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  await expect(page.locator(".projects")).toHaveCount(0);
+  await expect(page.locator(".gallery-card")).toHaveCount(8);
+  const rail = page.getByRole("region", {
+    name: "Project previews",
+    exact: true,
+  });
+  await rail.scrollIntoViewIfNeeded();
+  await rail.hover();
+  const y = await page.evaluate(() => window.scrollY);
+  await page.mouse.wheel(300, 0);
+  await expect
+    .poll(() => rail.evaluate((e) => e.scrollLeft))
+    .toBeGreaterThan(150);
+  const horizontal = await rail.evaluate((e) => e.scrollLeft);
+  await page.mouse.wheel(0, 300);
+  await expect
+    .poll(() => rail.evaluate((e) => e.scrollLeft))
+    .toBeGreaterThan(horizontal + 100);
+  expect(await page.evaluate(() => window.scrollY)).toBeCloseTo(y, 0);
+  await rail.focus();
+  await page.keyboard.press("Home");
+  await expect.poll(() => rail.evaluate((e) => e.scrollLeft)).toBe(0);
+  await page.keyboard.press("ArrowRight");
+  await expect
+    .poll(() => rail.evaluate((e) => e.scrollLeft))
+    .toBeGreaterThan(100);
+  await page.keyboard.press("End");
+  await expect(
+    page.getByRole("button", { name: "Next project preview" }),
+  ).toBeDisabled();
+  await rail.hover();
+  await page.mouse.wheel(0, 250);
+  await expect
+    .poll(() => page.evaluate(() => window.scrollY))
+    .toBeGreaterThan(y + 50);
+  await rail.scrollIntoViewIfNeeded();
+  await rail.focus();
+  await page.keyboard.press("Home");
+  const card = page.getByRole("button", {
+    name: "View WatchTogether case study",
+    exact: true,
+  });
+  await card.click();
+  await expect(
+    page.getByRole("dialog", { name: "WatchTogether", exact: true }),
+  ).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(card).toBeFocused();
+  await expect(rail).toBeVisible();
+  await page.getByRole("link", { name: "View all projects" }).click();
+  await expect(page).toHaveURL(/#\/projects$/);
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Projects." }),
+  ).toBeVisible();
+  await expect(page.locator("article.project")).toHaveCount(8);
+  await page.reload();
+  await expect(page.locator("article.project")).toHaveCount(8);
+  await page
+    .getByRole("navigation", { name: "Main navigation" })
+    .getByRole("link", { name: "About" })
+    .click();
+  await expect(
+    page.getByRole("heading", {
+      name: "I like problems that don’t come with instructions.",
+    }),
+  ).toBeInViewport();
+});
+
+test("gallery covers load and fit mobile and desktop", async ({ page }) => {
+  for (const width of [375, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/");
+    for (const card of await page.locator(".gallery-card").all()) {
+      await card.scrollIntoViewIfNeeded();
+      await expect
+        .poll(() =>
+          card
+            .locator("img")
+            .evaluate(
+              (img: HTMLImageElement) => img.complete && img.naturalWidth > 0,
+            ),
+        )
+        .toBe(true);
+    }
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    await page
+      .getByRole("button", {
+        name: "View Smart Basket case study",
+        exact: true,
+      })
+      .click();
+    await expect(
+      page.getByRole("dialog", { name: "Smart Basket", exact: true }),
+    ).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(page.locator(".project-gallery-rail")).toBeVisible();
+  }
 });

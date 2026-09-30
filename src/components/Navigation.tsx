@@ -2,7 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { links } from "../data/portfolio";
 import { ResourceLink } from "./Shared";
 
-export function Navigation({ onSearch }: { onSearch: () => void }) {
+export function Navigation({
+  onSearch,
+  page,
+}: {
+  onSearch: () => void;
+  page: "home" | "projects";
+}) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const update = () => setScrolled(window.scrollY > 20);
@@ -42,8 +48,12 @@ export function Navigation({ onSearch }: { onSearch: () => void }) {
           aria-label="Main navigation"
           className={open ? "nav-links is-open" : "nav-links"}
         >
-          <a href="#work" onClick={() => setOpen(false)}>
-            Work
+          <a
+            href="#/projects"
+            aria-current={page === "projects" ? "page" : undefined}
+            onClick={() => setOpen(false)}
+          >
+            Projects
           </a>
           <a href="#about" onClick={() => setOpen(false)}>
             About

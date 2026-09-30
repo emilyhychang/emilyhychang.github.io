@@ -166,7 +166,7 @@ export function SelectedWork({
       <SectionHeader aside={`01—${String(projects.length).padStart(2, "0")}`}>
         Selected work
       </SectionHeader>
-      <div className="work-intro">
+      <div className="work-intro sr-only">
         <h2 id="work-heading">
           A few things I’ve built,
           <br />

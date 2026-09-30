@@ -28,6 +28,13 @@ export function CommandPalette({
         disabled: false,
       })),
       {
+        id: "projects",
+        label: "All projects",
+        keywords: "work collection",
+        action: () => onSection("/projects"),
+        disabled: false,
+      },
+      {
         id: "about",
         label: "About Emily",
         keywords: "about",

@@ -1,9 +1,10 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import { LayoutGroup, MotionConfig } from "motion/react";
 import { Navigation } from "./components/Navigation";
+import { ProjectGallery } from "./components/ProjectGallery";
 import { Hero } from "./components/Hero";
 import { SelectedWork } from "./components/SelectedWork";
-import { About, Background } from "./components/About";
+import { About, Background, ToolsGrid } from "./components/About";
 import { Footer } from "./components/Footer";
 import { InView } from "./components/motion-primitives/InView";
 import { useProjectRoute } from "./hooks/useProjectRoute";
@@ -20,7 +21,7 @@ const CommandPalette = lazy(() =>
 );
 
 export default function App() {
-  const { projectId, openProject, closeProject } = useProjectRoute();
+  const { projectId, page, openProject, closeProject } = useProjectRoute();
   const [searchOpen, setSearchOpen] = useState(false);
   const project = projects.find((item) => item.id === projectId);
   const closeSearch = useCallback(() => setSearchOpen(false), []);
@@ -44,17 +45,21 @@ export default function App() {
   }
   function paletteSection(id: string) {
     setSearchOpen(false);
-    requestAnimationFrame(() => {
-      document.getElementById(id)?.scrollIntoView({
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          ? "instant"
-          : "smooth",
-      });
-      const heading = document.querySelector<HTMLElement>(`#${id} h2`);
-      heading?.setAttribute("tabindex", "-1");
-      heading?.focus({ preventScroll: true });
-    });
+    window.location.hash = id;
+    requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView());
   }
+  useEffect(() => {
+    document.title =
+      page === "projects"
+        ? "Projects — Emily Chang"
+        : "Emily Chang — Selected Work";
+    const frame = requestAnimationFrame(() => {
+      const target = document.getElementById(window.location.hash.slice(1));
+      if (target) target.scrollIntoView({ behavior: "instant" });
+      else window.scrollTo({ top: 0, behavior: "instant" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [page]);
   return (
     <MotionConfig reducedMotion="user">
       <LayoutGroup>
@@ -62,19 +67,37 @@ export default function App() {
           <a className="skip-link" href="#main">
             Skip to content
           </a>
-          <Navigation onSearch={() => setSearchOpen(true)} />
+          <Navigation page={page} onSearch={() => setSearchOpen(true)} />
           <main id="main">
-            <Hero />
-            <SelectedWork
-              onOpen={openProject}
-              active={!projectId && !searchOpen}
-            />
-            <InView>
-              <About />
-            </InView>
-            <InView>
-              <Background />
-            </InView>
+            {page === "projects" ? (
+              <div className="projects-page">
+                <div className="container projects-page-heading">
+                  <a href="#top">← Home</a>
+                  <h1>
+                    Projects<span>.</span>
+                  </h1>
+                  <p>Different questions. The same curiosity.</p>
+                </div>
+                <SelectedWork
+                  onOpen={openProject}
+                  active={!projectId && !searchOpen}
+                />
+              </div>
+            ) : (
+              <>
+                <Hero />
+                <InView>
+                  <About />
+                </InView>
+                <InView>
+                  <Background />
+                </InView>
+                <ProjectGallery onOpen={openProject} />
+                <InView>
+                  <ToolsGrid />
+                </InView>
+              </>
+            )}
           </main>
           <Footer />
         </div>
@@ -88,6 +111,7 @@ export default function App() {
           {project && (
             <CaseStudyDialog
               project={project}
+              returnLabel={page === "home" ? "← Home" : "← All projects"}
               onClose={closeProject}
               onNext={openProject}
             />
