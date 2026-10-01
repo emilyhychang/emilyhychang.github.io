@@ -70,8 +70,21 @@ export function About() {
         </div>
         <div className="about-copy">
           <p className="about-lead">
-            I’m Emily, a Cognitive Science and Business Economics student at UC
-            San Diego.
+            I’m Emily, a{" "}
+            <span className="degree-tooltip">
+              Cognitive Science
+              <span className="degree-tooltip-popup tooltip-up">
+                Specializing in Machine Learning &amp; Neural Computation
+              </span>
+            </span>{" "}
+            and{" "}
+            <span className="degree-tooltip">
+              Business Economics
+              <span className="degree-tooltip-popup tooltip-down">
+                Minoring in Business Analytics
+              </span>
+            </span>{" "}
+            student at UC San Diego.
           </p>
           <p>
             My projects often start with something I notice. At LMA, it was a

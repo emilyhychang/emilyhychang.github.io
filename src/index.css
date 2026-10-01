@@ -15,6 +15,7 @@
 }
 * {
   box-sizing: border-box;
+  
 }
 body {
   margin: 0;
@@ -169,6 +170,7 @@ html {
   pointer-events: none;
   user-select: none;
   fill: #eae7e1;
+  opacity: 0.68;
   font-family: "Bodoni 72 Smallcaps", "Bodoni 72", Didot, serif;
   font-size: 500px;
   font-weight: 700;
@@ -214,6 +216,7 @@ html {
 }
 .hero-description {
   padding-left: 36px;
+  transform: translateX(100px);
 }
 .hero-description p {
   font-size: 19px;
@@ -3250,4 +3253,69 @@ html {
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
+}
+
+.degree-tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+
+  /* subtle hint that it's interactive */
+  border-bottom: 1px dotted #aaa79f;
+}
+
+.degree-tooltip-popup {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translate(-50%, 6px);
+
+  width: max-content;
+  max-width: 260px;
+  padding: 9px 12px;
+
+  background: #8f987c;
+  color: #ffffff;
+
+  font-size: 12px;
+  line-height: 1.35;
+  font-weight: 400;
+  letter-spacing: 0;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s ease;
+
+  z-index: 20;
+}
+
+/* Cognitive Science — popup above */
+.tooltip-up {
+  bottom: calc(100% + 10px);
+  transform: translate(-50%, 6px);
+}
+
+/* Business Economics — popup below */
+.tooltip-down {
+  top: 100%;
+  margin-top: 5px;
+  margin-left: 65px;
+  transform: translate(-50%, -6px);
+  display: block;
+  line-height: 1.4;
+  height: auto;
+  min-height: max-content;
+  overflow: visible;
+}
+
+.degree-tooltip:hover .tooltip-up,
+.degree-tooltip:hover .tooltip-down {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
 }

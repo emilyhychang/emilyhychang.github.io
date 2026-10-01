@@ -13,7 +13,7 @@ export function Hero() {
       >
         <text
           x="800"
-          y="347"
+          y="365"
           textAnchor="middle"
           textLength="1620"
           lengthAdjust="spacingAndGlyphs"
@@ -22,7 +22,7 @@ export function Hero() {
         </text>
         <text
           x="800"
-          y="700"
+          y="706"
           textAnchor="middle"
           textLength="1620"
           lengthAdjust="spacingAndGlyphs"
@@ -33,7 +33,7 @@ export function Hero() {
       <section className="hero container" aria-labelledby="hero-heading">
         <div className="hero-topline eyebrow">
           <span>Emily Chang / UC San Diego</span>
-          <span>Portfolio / 2026</span>
+          <span>Cognitive Science (Machine Learning) • Business Economics • Business Analytics</span>
         </div>
         <h1 id="hero-heading">
           {[
@@ -63,7 +63,6 @@ export function Hero() {
               <br className="desktop-break" /> how people use them.
             </p>
             <span className="education">
-              UC San Diego · Cognitive Science + Business Economics
             </span>
           </div>
         </div>

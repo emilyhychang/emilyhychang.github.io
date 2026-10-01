@@ -204,7 +204,7 @@ export function SelectedWork({
           ))}
         </div>
         <span className="eyebrow lens-label">
-          Most relevant first · All projects stay visible
+          sort by project type & relevance
         </span>
       </div>
       <p className="sr-only" role="status">
