@@ -97,12 +97,11 @@ export function SmartBasketComparisons() {
               />
             </a>
             <figcaption>
-              {item.caption} Original annotated comparison from the project
-              page.{" "}
-              <a href={src} target="_blank" rel="noreferrer">
-                View full size ↗
-              </a>
-            </figcaption>
+                {item.caption}{" "}
+                <a href={src} target="_blank" rel="noreferrer">
+                  View full size ↗
+                </a>
+              </figcaption>
           </figure>
         );
       })}

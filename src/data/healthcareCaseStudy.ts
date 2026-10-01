@@ -2,7 +2,7 @@ import type { CaseSection } from "./caseStudies";
 export const healthcareOverview = [
   { label: "Scope", value: "OECD countries · 2000 to 2019" },
   { label: "Sources", value: "OECD · World Bank" },
-  { label: "Tools", value: "Python · pandas · seaborn · SciPy" },
+  { label: "Tools", value: "Regression Modeling · Python · pandas · seaborn · SciPy · matplotlib" },
 ];
 export const healthcareSections: CaseSection[] = [
   {
@@ -28,7 +28,7 @@ export const healthcareSections: CaseSection[] = [
     paragraphs: [
       "Exploratory plots compared spending with individual indicators before I constructed a combined ranking. I averaged the available observations by country, ranked each indicator, and assigned lower ranks to the study’s preferred direction: lower mortality and shorter stays, higher life expectancy and more available technology.",
       "The composite weighted indicator ranks using each indicator’s standard deviation relative to its mean, normalized across the four measures. This gave more weight to indicators that varied more across countries. The resulting ranking is specific to this project and is not an established clinical measure of quality.",
-      "I then compared the composite ranking with expenditure rankings using scatterplots and linear fits. This asked whether countries ranked similarly on spending and the selected outcome measures.",
+      "I then used linear regression modeling to compare the composite outcome ranking with healthcare expenditure, using scatterplots, fitted regression lines, and R² to examine the strength of each relationship.",
     ],
   },
   {

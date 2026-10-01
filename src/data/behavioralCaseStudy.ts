@@ -5,7 +5,7 @@ export const behavioralOverview = [
   { label: "Study", value: "108 participants · One week" },
   {
     label: "Methods",
-    value: "Qualtrics · Random assignment · Two-sample t-tests",
+    value: "A/B Testing · Random assignment · Two-sample t-tests",
   },
 ];
 
@@ -20,7 +20,7 @@ export const behavioralSections: CaseSection[] = [
   },
   {
     id: "research",
-    title: "Two versions of the same choice",
+    title: "A/B Testing the popularity effect",
     paragraphs: [
       "The study used a between-subjects design: each participant saw one survey condition. Qualtrics randomly assigned participants with a 50/50 allocation probability. Over one week, the study had 108 participants: 50 in control and 58 in treatment, as reported in the final presentation.",
       "Both conditions offered five beverages. The treatment added a statement describing Coke as the most popular option among Americans and referring to media sources. The control presented the beverages without a popularity statement. Participants selected the beverage they would be most likely to consume; this measured stated choice, not an actual purchase.",

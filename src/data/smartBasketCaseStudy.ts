@@ -2,8 +2,7 @@ import type { CaseSection } from "./caseStudies";
 export const smartBasketOverview = [
   { label: "Role", value: "UI/UX Designer · User Researcher" },
   { label: "Context", value: "Team project · Spring 2026" },
-  { label: "Tools", value: "Figma · Interviews · Usability testing" },
-];
+  { label: "Methods", value: "User Interviews · Usability Testing · Prototyping · Iterative Design (Figma)", },];
 export const smartBasketSections: CaseSection[] = [
   {
     id: "problem",
@@ -15,7 +14,7 @@ export const smartBasketSections: CaseSection[] = [
   },
   {
     id: "research",
-    title: "How participants planned their spending",
+    title: "User research: how participants planned spending",
     paragraphs: [
       "We conducted semi-structured interviews with three active EBT users, ages 19 to 21, about budgeting, grocery trips, in-store spending decisions, checkout, and their experience with ebtEDGE. Because we were discussing personal finances, we chose not to record the interviews. One team member led the conversation while another took notes.",
       "Participants described approximate budgets and frequent adjustments while shopping. Use of ebtEDGE was limited: one participant did not know about it, another had deleted it after login frustrations, and another checked it only monthly. Checking a balance was separate from the everyday work of deciding what to buy.",

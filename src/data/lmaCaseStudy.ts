@@ -2,8 +2,8 @@ import type { CaseSection } from "./caseStudies";
 export const lmaOverview = [
   { label: "Context", value: "LMA Marketing & Advertising · Internship" },
   {
-    label: "Contribution",
-    value: "Identified the problem and built the automation tool",
+    label: "Role",
+    value: "Automation · Stakeholder Management · Data Analytics",
   },
   { label: "Tools", value: "Python · Streamlit · CSV processing" },
 ];

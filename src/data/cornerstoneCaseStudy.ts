@@ -3,10 +3,7 @@ import type { CaseSection } from "./caseStudies";
 export const cornerstoneOverview = [
   { label: "Client", value: "Mud Lily Clay · San Diego" },
   { label: "Collaboration", value: "I worked with a team" },
-  {
-    label: "Focus",
-    value: "Website redesign · Analytics · Squarespace / Acuity",
-  },
+  { label: "Focus", value: "User Research · Stakeholder Management · Analytics · UX Design",  },
 ];
 
 export const cornerstoneSections: CaseSection[] = [
@@ -21,9 +18,10 @@ export const cornerstoneSections: CaseSection[] = [
   },
   {
     id: "research",
-    title: "Two different reasons to visit the studio",
+    title: "User research revealed two customer needs",
     paragraphs: [
-      "In a stakeholder interview, the client described two main customer groups and their priorities. One-time visitors wanted a creative experience or a way to unwind. Structured learners wanted a clear course progression, reliable studio access, and a sense of community.",
+      "I began the user research with a stakeholder interview, translating the client's business goals and customer observations into two primary user groups and their needs. In a stakeholder interview, the client described two main customer groups and their priorities. ",
+      "One-time visitors wanted a creative experience or a way to unwind. Structured learners wanted a clear course progression, reliable studio access, and a sense of community.",
       "Those needs suggested different routes through the site. A first-time visitor needs to understand what an experience includes and how to book it. A returning learner needs to find courses or studio time without repeatedly working through introductory information.",
       "The interview also identified Google Search as an important discovery channel and a desire to make the website more useful to recurring customers. We compared that account with site analytics and later usability feedback.",
     ],
@@ -57,7 +55,7 @@ export const cornerstoneSections: CaseSection[] = [
     id: "presentation",
     title: "The client presentation",
     paragraphs: [
-      "Our final presentation covered the research, analytics, and design work through to implementation. These excerpts show the proposed sitemap and booking layouts.",
+      "We presented our research, analytics, and design recommendations to the client, incorporating stakeholder priorities and platform constraints into the final implementation.",
     ],
   },
   {

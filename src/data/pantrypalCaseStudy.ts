@@ -2,7 +2,9 @@ import type { CaseSection } from "./caseStudies";
 export const pantrypalOverview = [
   { label: "Context", value: "UC San Diego · COGS 188: AI Algorithms" },
   { label: "Collaboration", value: "I worked with a team" },
-  { label: "Tools", value: "Python · pandas · NLTK · scikit-learn" },
+  { label: "Methods", value: "NLP · TF-IDF · K-Means Clustering · scikit-learn" },
+  { label: "Tools", value: "Python · pandas · NLTK" },
+
 ];
 export const pantrypalSections: CaseSection[] = [
   {
@@ -31,7 +33,7 @@ export const pantrypalSections: CaseSection[] = [
   },
   {
     id: "methods",
-    title: "Finding patterns in cooking methods",
+    title: "NLP and clustering cooking methods",
     paragraphs: [
       "We used NLTK to tokenize instructions, identify verbs through part-of-speech tags, and reduce those verbs to their base forms. TF-IDF converted the resulting cooking-action text into numeric features, and K-Means grouped it into 15 clusters.",
       "The script displays representative words for each cluster and includes learning and validation curves based on inertia. These were tools for exploring the representation and cluster count, not measures of whether people found the recommended meals useful.",

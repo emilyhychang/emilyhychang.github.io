@@ -37,7 +37,7 @@ export const projects: Project[] = [
     id: "f1",
     number: "02",
     title: "Formula 1 Explorer",
-    statement: "Compare F1 races, lap times, and tire strategies.",
+    statement: "Analyzing race data and forecasting F1 performance by comparing F1 races, lap times, and tire strategies.",
     tags: ["Engineering", "Data", "Product"],
     lenses: ["Engineering", "Data", "Product"],
   },
