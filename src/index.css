@@ -169,7 +169,6 @@ html {
   pointer-events: none;
   user-select: none;
   fill: #eae7e1;
-  opacity: 0.65;
   font-family: "Bodoni 72 Smallcaps", "Bodoni 72", Didot, serif;
   font-size: 500px;
   font-weight: 700;
@@ -3198,27 +3197,27 @@ html {
 .about-watermark {
   position: absolute;
   right: -10px;
-  top: 51%;
+  top: 50%;
   transform: translateY(-50%);
 
   z-index: -1;
 
   font-family: "Bodoni 72 Smallcaps", "Bodoni 72", Didot, serif;
-  font-size: clamp(125px, 14vw, 250px);
+  font-size: clamp(120px, 14vw, 260px);
   font-weight: 700;
-  line-height: 0.72;
-  letter-spacing: 0;
+  line-height: 0.68;
 
   color: #eae7e1;
-  opacity: 0.65;
-
-  /* tightly stack ABOUT */
-  width: 0.75em;
-  overflow-wrap: anywhere;
+  width: 1em;
   text-align: center;
-
   pointer-events: none;
   user-select: none;
+}
+
+.about-watermark > span {
+  display: block;
+  width: 1em;
+  text-align: center;
 }
 /* Lower only "Beyond the work" without moving the line */
 .about-section .section-header > span:first-child {

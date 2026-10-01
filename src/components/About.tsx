@@ -4,15 +4,50 @@ import { links, toolGroups } from "../data/portfolio";
 import { ResourceLink, SectionHeader } from "./Shared";
 
 export function About() {
+    const reduced = useReducedMotion();
   return (
     <section
       id="about"
       className="container about-section"
       aria-labelledby="about-heading"
     >
-      <span className="about-watermark" aria-hidden="true">
-        ABOUT
-      </span>
+        <motion.div
+          className="about-watermark"
+          aria-hidden="true"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: reduced ? 0 : 0.13,
+              },
+            },
+          }}
+        >
+          {"ABOUT".split("").map((letter) => (
+            <motion.span
+              key={letter}
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  x: reduced ? 0 : 100,
+                },
+                visible: {
+                  opacity: 0.65,
+                  x: 0,
+                  transition: {
+                    duration: reduced ? 0 : 0.65,
+                    ease: [0.16, 1, 0.3, 1],
+                  },
+                },
+              }}
+            >
+              {letter}
+            </motion.span>
+          ))}
+        </motion.div>
       <SectionHeader aside="">Beyond the work</SectionHeader>
       <h2 id="about-heading">
         I like problems that
