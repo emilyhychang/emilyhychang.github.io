@@ -9,7 +9,11 @@ export function Hero() {
         <span>Portfolio / 2026</span>
       </div>
       <h1 id="hero-heading">
-        {["I design,", "build, and", "figure things out"].map((line, index) => (
+        {[
+          "Always curious.",
+          "Always learning.",
+          "Always building something",
+        ].map((line, index) => (
           <motion.span
             className="hero-line"
             key={line}

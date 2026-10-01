@@ -169,7 +169,7 @@ html {
   color: var(--muted);
 }
 .hero h1 {
-  font-size: clamp(64px, 7.65vw, 112px);
+  font-size: clamp(56px, 6vw, 88px);
   font-weight: 450;
   line-height: 1.015;
   letter-spacing: -0.072em;
@@ -989,11 +989,6 @@ html {
 .footer-note {
   font-size: 8px;
 }
-@media (min-width: 1600px) {
-  .hero h1 {
-    font-size: 120px;
-  }
-}
 @media (max-width: 1100px) {
   .container {
     width: calc(100% - 72px);
@@ -1005,7 +1000,7 @@ html {
     padding-left: 0;
   }
   .hero h1 {
-    font-size: 8.4vw;
+    font-size: 6vw;
   }
   .hero-description p {
     font-size: 17px;
@@ -3037,5 +3032,99 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .interests-bubble {
     transition: none;
+  }
+}
+
+.projects-title-row {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.kody-paws {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  padding: 5px;
+  background: transparent;
+  color: #7a8069;
+  border-radius: 8px;
+}
+.kody-paws:hover {
+  color: #505944;
+}
+.kody-paws svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.kody-photo-dialog {
+  border: 0;
+  padding: 24px;
+  background: transparent;
+  max-width: 94vw;
+  max-height: 94svh;
+  margin: auto;
+  overflow: auto;
+}
+.kody-photo-dialog::backdrop {
+  background: #17171799;
+}
+.kody-photo-content {
+  position: relative;
+  padding: 12px;
+  background: var(--paper);
+  border-radius: 12px;
+}
+.kody-photo-content img {
+  display: block;
+  max-width: min(70vw, 520px);
+  max-height: 72svh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+}
+.kody-photo-content p {
+  margin: 14px 0 4px;
+  font-size: 13px;
+  text-align: center;
+}
+.kody-photo-close {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  width: 40px;
+  height: 40px;
+  background: var(--paper);
+  border-radius: 50%;
+  font-size: 24px;
+}
+@media (max-width: 600px) {
+  .projects-title-row {
+    gap: 12px;
+  }
+  .kody-paws {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.nav-projects {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+}
+.nav-projects .kody-paws {
+  width: 36px;
+  height: 44px;
+  padding: 5px;
+}
+@media (max-width: 767px) {
+  .nav-projects {
+    min-height: 49px;
+  }
+  .nav-projects > a {
+    padding: 15px 0;
+    font-size: 18px;
   }
 }

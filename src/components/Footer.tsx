@@ -25,9 +25,9 @@ export function Footer() {
         </div>
         <div className="footer-main">
           <h2>
-            Want to
+            Have a problem
             <br />
-            work together?
+            I can solve?
           </h2>
           <div className="footer-cta">
             <Magnetic>

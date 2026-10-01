@@ -1,3 +1,4 @@
+import { KodyPhoto } from "./KodyPhoto";
 import { useEffect, useRef, useState } from "react";
 import { links } from "../data/portfolio";
 import { ResourceLink } from "./Shared";
@@ -48,13 +49,16 @@ export function Navigation({
           aria-label="Main navigation"
           className={open ? "nav-links is-open" : "nav-links"}
         >
-          <a
-            href="#/projects"
-            aria-current={page === "projects" ? "page" : undefined}
-            onClick={() => setOpen(false)}
-          >
-            Projects
-          </a>
+          <div className="nav-projects">
+            <KodyPhoto />
+            <a
+              href="#/projects"
+              aria-current={page === "projects" ? "page" : undefined}
+              onClick={() => setOpen(false)}
+            >
+              Projects
+            </a>
+          </div>
           <a href="#about" onClick={() => setOpen(false)}>
             About
           </a>
