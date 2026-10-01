@@ -3203,7 +3203,7 @@ html {
   z-index: -1;
 
   font-family: "Bodoni 72 Smallcaps", "Bodoni 72", Didot, serif;
-  font-size: clamp(120px, 14vw, 260px);
+  font-size: clamp(135px, 15.5vw, 290px);
   font-weight: 700;
   line-height: 0.68;
 

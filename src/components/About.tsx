@@ -143,7 +143,7 @@ function ExperienceList() {
       aria-labelledby="experience-heading"
     >
       <div className="detail-heading">
-        <h2 id="experience-heading">Along the way</h2>
+        <h2 id="experience-heading">Where I'm at now</h2>
         <ResourceLink href={links.resume} placeholder="Add resume">
           View full resume
         </ResourceLink>
