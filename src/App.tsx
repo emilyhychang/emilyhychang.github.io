@@ -1,5 +1,10 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from "react";
-import { LayoutGroup, MotionConfig } from "motion/react";
+import {
+  LayoutGroup,
+  motion,
+  MotionConfig,
+  useReducedMotion,
+} from "motion/react";
 import { Navigation } from "./components/Navigation";
 import { ProjectGallery } from "./components/ProjectGallery";
 import { Hero } from "./components/Hero";
@@ -9,6 +14,7 @@ import { Footer } from "./components/Footer";
 import { InView } from "./components/motion-primitives/InView";
 import { useProjectRoute } from "./hooks/useProjectRoute";
 import { projects, type ProjectId } from "./data/portfolio";
+
 const CaseStudyDialog = lazy(() =>
   import("./components/CaseStudyDialog").then((module) => ({
     default: module.CaseStudyDialog,
@@ -21,6 +27,7 @@ const CommandPalette = lazy(() =>
 );
 
 export default function App() {
+  const reduced = useReducedMotion();
   const { projectId, page, openProject, closeProject } = useProjectRoute();
   const [searchOpen, setSearchOpen] = useState(false);
   const project = projects.find((item) => item.id === projectId);
@@ -72,10 +79,25 @@ export default function App() {
             {page === "projects" ? (
               <div className="projects-page">
                 <div className="container projects-page-heading">
+                  <motion.div
+                    className="projects-page-watermark"
+                    aria-hidden="true"
+                    initial={reduced ? false : { opacity: 0, x: 220 }}
+                    animate={{ opacity: 0.65, x: 0 }}
+                    transition={{
+                      duration: 1.2,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
+                    things I built
+                  </motion.div>
+
                   <a href="#top">← Home</a>
+
                   <h1>
                     Projects<span>.</span>
                   </h1>
+
                   <p>Browse my design, coding, and research projects.</p>
                 </div>
                 <SelectedWork

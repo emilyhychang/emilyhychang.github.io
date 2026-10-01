@@ -183,6 +183,6 @@ export const links: Record<
 };
 export const toolGroups = [
   { title: "Build", items: ["Python", "JavaScript", "React", "Git"] },
-  { title: "Analyze", items: ["SQL", "Excel", "Tableau", "Google Analytics"] },
+  { title: "Analyze", items: ["SQL", "Excel", "Tableau", "Power BI", "Google Analytics"] },
   { title: "Create", items: ["Figma", "Adobe", "Canva"] },
 ];

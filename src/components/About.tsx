@@ -10,7 +10,10 @@ export function About() {
       className="container about-section"
       aria-labelledby="about-heading"
     >
-      <SectionHeader aside="A little about me">Beyond the work</SectionHeader>
+      <span className="about-watermark" aria-hidden="true">
+        ABOUT
+      </span>
+      <SectionHeader aside="">Beyond the work</SectionHeader>
       <h2 id="about-heading">
         I like problems that
         <br />

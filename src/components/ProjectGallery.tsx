@@ -81,7 +81,7 @@ export function ProjectGallery({
       </span>
       <div className="container gallery-heading">
         <div>
-          <p className="eyebrow">Selected projects / 01 to 08</p>
+          <p className="eyebrow">Things I Built</p>
           <h2 id="gallery-heading">
             Ideas into
             <br />
