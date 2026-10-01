@@ -90,7 +90,7 @@ export function CommandPalette({
           data-initial-focus
 
           type="search"
-          placeholder="Search work or a destination…"
+          placeholder="Search projects, about, or resume…"
           value={query}
           role="combobox"
           aria-label="Search destinations"
@@ -143,7 +143,7 @@ export function CommandPalette({
               }}
             >
               <span>{option.label}</span>
-              <span>{option.disabled ? "[Add link]" : "↗"}</span>
+              <span>{option.disabled ? "Unavailable" : "↗"}</span>
             </li>
           ))}
         </ul>

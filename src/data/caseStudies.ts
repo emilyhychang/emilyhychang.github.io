@@ -15,31 +15,11 @@ export interface CaseSection {
 export const caseStudies: Record<ProjectId, CaseSection[]> = {
   watchtogether: [
     {
-      id: "problem",
-      title: "The problem",
-      prompt:
-        "[Add the user problem, supporting evidence, and the context of long-distance movie nights.]",
-    },
-    {
-      id: "approach",
-      title: "From idea to shared experience",
-      prompt:
-        "[Add the product insight, MVP scope, implementation, and iteration process.]",
-    },
-    {
-      id: "decisions",
-      title: "Decisions & tradeoffs",
-      prompt: "[Add verified decisions from the project.]",
-    },
-    {
-      id: "result",
-      title: "The result",
-      prompt: "[Add outcome and supporting evidence.]",
-    },
-    {
-      id: "reflection",
-      title: "What I’d do next",
-      prompt: "[Add lessons, open questions, and the next experiment.]",
+      id: "progress",
+      title: "Case study coming soon",
+      paragraphs: [
+        "I’m still building WatchTogether. This preview shows the shared movie-room concept; I’ll add the build process and results when the case study is ready.",
+      ],
     },
   ],
   healthcare: healthcareSections,
@@ -50,8 +30,3 @@ export const caseStudies: Record<ProjectId, CaseSection[]> = {
   cornerstone: cornerstoneSections,
   lma: lmaSections,
 };
-export const decisionQuestions = [
-  "Why synchronized playback first?",
-  "What belongs in the MVP?",
-  "What did I deliberately leave out?",
-];

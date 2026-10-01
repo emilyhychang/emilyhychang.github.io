@@ -1,3 +1,5 @@
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { useEffect, useState } from "react";
 import { links, toolGroups } from "../data/portfolio";
 import { ResourceLink, SectionHeader } from "./Shared";
 
@@ -17,14 +19,16 @@ export function About() {
         <span className="muted">instructions.</span>
       </h2>
       <div className="about-grid">
-        <div className="about-portrait">
-          <img
-            src={`${import.meta.env.BASE_URL}images/about/emily.jpg`}
-            alt="Emily sitting at a café, resting her chin on her hand."
-            width="768"
-            height="1024"
-            loading="lazy"
-          />
+        <div className="about-photo-column">
+          <div className="about-portrait">
+            <img
+              src={`${import.meta.env.BASE_URL}images/about/emily.jpg`}
+              alt="Emily sitting at a café, resting her chin on her hand."
+              width="768"
+              height="1024"
+              loading="lazy"
+            />
+          </div>
         </div>
         <div className="about-copy">
           <p className="about-lead">
@@ -32,17 +36,66 @@ export function About() {
             San Diego.
           </p>
           <p>
-            I’m interested in what happens when technology, people, and business
-            collide — whether that means building a product, digging through
-            data, or figuring out why something isn’t working.
+            My projects often start with something I notice. At LMA, it was a
+            teammate spending over an hour cleaning a dataset. That became a
+            tool the team could use without knowing Python.
           </p>
           <p>I tend to learn by making things.</p>
-          <p className="placeholder">[Add a personal sentence]</p>
-          <span className="about-signoff">Always a work in progress.</span>
           <Currently />
+          <InterestsBubble />
         </div>
       </div>
     </section>
+  );
+}
+const interests = [
+  "golf",
+  "tennis",
+  "reading",
+  "finding new places on Yelp",
+  "trying new restaurants",
+  "traveling",
+  "chasing sunsets",
+  "birdwatching",
+  "my dog, Kody - try to find him on this site :)",
+];
+function InterestsBubble() {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const reduced = useReducedMotion();
+  useEffect(() => {
+    if (paused || reduced) return;
+    const timer = window.setInterval(() => {
+      if (!document.hidden) setIndex((value) => (value + 1) % interests.length);
+    }, 2350);
+    return () => window.clearInterval(timer);
+  }, [paused, reduced]);
+  return (
+    <button
+      className="interests-bubble"
+      onClick={() => setIndex((value) => (value + 1) % interests.length)}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+      aria-label={`In my free time: ${interests[index]}. Show next interest`}
+    >
+      <span className="interests-label">in my free time:</span>
+      <span className="interests-window">
+        <AnimatePresence initial={false}>
+          <motion.span
+            className="interests-value"
+            key={index}
+            initial={{ y: reduced ? 0 : "100%", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: reduced ? 0 : "-100%", opacity: 0 }}
+            transition={{ duration: reduced ? 0 : 0.35, ease: "easeInOut" }}
+          >
+            {interests[index]}
+          </motion.span>
+        </AnimatePresence>
+      </span>
+    </button>
   );
 }
 function ExperienceList() {
@@ -58,12 +111,12 @@ function ExperienceList() {
         </ResourceLink>
       </div>
       <div className="experience-row">
-        <span>August–December 2026</span>
+        <span>August to December 2026</span>
         <h3>LMA Marketing &amp; Advertising</h3>
         <span>Marketing &amp; Project Management Intern</span>
         <span className="experience-description">
-          Supporting marketing projects through content, analytics, and workflow
-          coordination.
+          Supporting marketing projects and building a tool to automate the
+          team’s data cleanup.
         </span>
       </div>
     </section>
@@ -90,7 +143,6 @@ export function ToolsGrid() {
           </div>
         ))}
       </div>
-      <p className="placeholder tools-note">[Confirm tools]</p>
     </section>
   );
 }
@@ -107,16 +159,15 @@ function Currently() {
           </dd>
         </div>
         <div>
-          <dt>Learning</dt>
-          <dd className="placeholder">[Add current interest]</dd>
+          <dt>Reading</dt>
+          <dd>
+            How to Start{" "}
+            <span className="currently-author">by Jodi Kantor</span>
+          </dd>
         </div>
         <div>
           <dt>Watching</dt>
-          <dd className="placeholder">[Add current watch]</dd>
-        </div>
-        <div>
-          <dt>Based</dt>
-          <dd className="placeholder">[Add location]</dd>
+          <dd>A Knight of the Seven Kingdoms</dd>
         </div>
       </dl>
     </section>

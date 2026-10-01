@@ -16,7 +16,7 @@ export function HealthcarePreview() {
           <span>Comparison</span>
         </div>
         {[
-          ["Period", "2000–2019"],
+          ["Period", "2000 to 2019"],
           ["Indicators", "Four quality proxies"],
           ["Sources", "OECD / World Bank"],
         ].map(([label, value]) => (

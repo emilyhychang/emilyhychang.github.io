@@ -1,3 +1,4 @@
+import { KodyPeek } from "./KodyPeek";
 import { lmaOverview } from "../data/lmaCaseStudy";
 import { LMACaseVisual } from "./LMACaseDetails";
 import { smartBasketOverview } from "../data/smartBasketCaseStudy";
@@ -16,64 +17,16 @@ import {
   CornerstonePresentation,
 } from "./CornerstoneCaseDetails";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { f1Overview } from "../data/f1CaseStudy";
 import { F1Architecture, F1CaseVisual } from "./F1CaseDetails";
 import { useModal } from "../hooks/useModal";
-import { caseStudies, decisionQuestions } from "../data/caseStudies";
+import { caseStudies } from "../data/caseStudies";
 import { links, projects, type Project } from "../data/portfolio";
 import { ProjectVisual } from "./ProjectVisuals";
 import { Magnetic } from "./MotionDetails";
 import { ResourceLink } from "./Shared";
 
-function DecisionDisclosure() {
-  const [open, setOpen] = useState<number | null>(null);
-  const reduced = useReducedMotion();
-  return (
-    <div className="decisions">
-      {decisionQuestions.map((question, index) => (
-        <div className="decision" key={question}>
-          <h4>
-            <button
-              aria-expanded={open === index}
-              aria-controls={`decision-${index}`}
-              onClick={() => setOpen(open === index ? null : index)}
-            >
-              <span>0{index + 1}</span>
-              {question}
-              <span aria-hidden="true">{open === index ? "−" : "+"}</span>
-            </button>
-          </h4>
-          <AnimatePresence initial={false}>
-            {open === index && (
-              <motion.div
-                id={`decision-${index}`}
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: reduced ? 0 : 0.2 }}
-                className="decision-body"
-              >
-                {[
-                  "The decision",
-                  "Considered",
-                  "Why I chose it",
-                  "Tradeoff",
-                  "What I’d test next",
-                ].map((label) => (
-                  <div key={label}>
-                    <h5 className="eyebrow">{label}</h5>
-                    <p>[Add {label.toLowerCase()}]</p>
-                  </div>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      ))}
-    </div>
-  );
-}
 export function CaseStudyDialog({
   project,
   returnLabel,
@@ -88,7 +41,12 @@ export function CaseStudyDialog({
   const dialog = useModal(onClose);
   const scroller = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState("intro");
-  const [progress, setProgress] = useState(0);
+  const [reading, setReading] = useState({
+    id: project.id,
+    progress: 0,
+    peeked: false,
+  });
+  const progress = reading.id === project.id ? reading.progress : 0;
   const reduced = useReducedMotion();
   const sections = caseStudies[project.id];
   useEffect(() => {
@@ -108,14 +66,19 @@ export function CaseStudyDialog({
           ? (elements.at(-1)?.id ?? "intro")
           : (current?.id ?? "intro"),
       );
-      setProgress(
-        root.scrollTop / Math.max(1, root.scrollHeight - root.clientHeight),
-      );
+      const fraction =
+        root.scrollTop / Math.max(1, root.scrollHeight - root.clientHeight);
+      setReading((previous) => ({
+        id: project.id,
+        progress: fraction,
+        peeked:
+          fraction >= 0.65 || (previous.id === project.id && previous.peeked),
+      }));
     };
     root.addEventListener("scroll", update, { passive: true });
     update();
     const title = document.title;
-    document.title = `${project.title} — Emily Chang`;
+    document.title = `${project.title} | Emily Chang`;
     return () => {
       root.removeEventListener("scroll", update);
       document.title = title;
@@ -205,10 +168,7 @@ export function CaseStudyDialog({
                   ServiceTitan File Cleaner / Data automation at LMA
                 </p>
               ) : (
-                <p className="case-draft">
-                  Case study in progress · Content placeholders are marked
-                  below.
-                </p>
+                <p className="case-draft">I’m still writing this case study.</p>
               )}
               <motion.div
                 layoutId={reduced ? undefined : `visual-${project.id}`}
@@ -240,10 +200,7 @@ export function CaseStudyDialog({
                             ? smartBasketOverview
                             : project.id === "lma"
                               ? lmaOverview
-                              : ["Role", "Timeline", "Tools"].map((label) => ({
-                                  label,
-                                  value: `[Add ${label.toLowerCase()}]`,
-                                }))
+                              : [{ label: "Status", value: "In progress" }]
                 ).map(({ label, value }) => (
                   <div key={label}>
                     <span className="eyebrow">{label}</span>
@@ -340,8 +297,6 @@ export function CaseStudyDialog({
                         <SmartBasketWorkflow />
                       </>
                     )}
-                  {project.id === "watchtogether" &&
-                    section.id === "decisions" && <DecisionDisclosure />}
                   {project.id === "cornerstone" &&
                     section.id === "presentation" && (
                       <CornerstonePresentation />
@@ -385,6 +340,10 @@ export function CaseStudyDialog({
             </button>
           ))}
         </nav>
+        <KodyPeek
+          key={project.id}
+          visible={reading.id === project.id && reading.peeked}
+        />
       </motion.div>
     </dialog>
   );

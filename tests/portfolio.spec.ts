@@ -23,18 +23,6 @@ test("case studies preserve scroll and support history, focus and next project",
   expect(
     await page.evaluate(() => !!document.activeElement?.closest("dialog")),
   ).toBe(true);
-  await dialog
-    .getByRole("button", {
-      name: "Why synchronized playback first?",
-      exact: false,
-    })
-    .click();
-  await expect(
-    dialog.getByRole("button", {
-      name: "Why synchronized playback first?",
-      exact: false,
-    }),
-  ).toHaveAttribute("aria-expanded", "true");
   await page.keyboard.press("Escape");
   await expect(dialog).toHaveCount(0);
   await expect(trigger).toBeFocused();
@@ -129,13 +117,15 @@ test("preview playback, slide controls and relevance lens work", async ({
     .getByRole("button", { name: "Next presentation slide", exact: true })
     .click();
   await expect(
-    page.getByRole("heading", { name: "[Add research insight]" }),
+    page.getByRole("heading", {
+      name: "One-time visitors and returning learners.",
+    }),
   ).toBeVisible();
   await page
     .getByRole("button", { name: "Previous presentation slide" })
     .click();
   await expect(
-    page.getByRole("heading", { name: "Making sense of what’s next." }),
+    page.getByRole("heading", { name: "Finding the right pottery class." }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Marketing", exact: true }).click();
   await expect(page.locator(".is-dimmed")).toHaveCount(6);
@@ -380,5 +370,121 @@ test("gallery covers load and fit mobile and desktop", async ({ page }) => {
     ).toBeVisible();
     await page.keyboard.press("Escape");
     await expect(page.locator(".project-gallery-rail")).toBeVisible();
+  }
+});
+
+test("Kody appears after reading, responds to a click, and resets for the next case", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/#/work/lma");
+  const dog = page.getByRole("button", { name: "Say hello to Kody" });
+  await expect(page.getByRole("dialog")).toBeVisible();
+  await expect(dog).toHaveCount(0);
+  const scroller = page.locator(".case-scroll");
+  await scroller.evaluate((el) => {
+    el.scrollTop = (el.scrollHeight - el.clientHeight) * 0.6;
+  });
+  await expect(
+    page.getByRole("progressbar", { name: "Case study reading progress" }),
+  ).toHaveAttribute("aria-valuenow", "60");
+  await expect(dog).toHaveCount(0);
+  await scroller.evaluate((el) => {
+    el.scrollTop = (el.scrollHeight - el.clientHeight) * 0.7;
+  });
+  await expect(dog).toBeVisible();
+  await dog.click();
+  await expect(page.getByRole("dialog").getByRole("status")).toHaveText(
+    "you found kody :)",
+  );
+  await expect(dog).toHaveAttribute("aria-pressed", "true");
+  await page.getByRole("button", { name: "Hide Kody" }).click();
+  await expect(dog).toHaveCount(0);
+  await scroller.evaluate((el) => {
+    el.scrollTop = el.scrollHeight;
+  });
+  await expect(dog).toHaveCount(0);
+  await page
+    .getByRole("button", { name: "Next project Healthcare Spending" })
+    .click();
+  await expect(page).toHaveURL(/healthcare$/);
+  await expect(dog).toHaveCount(0);
+});
+
+test("About interests cycle through every item and wrap with keyboard input", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/#about");
+  const bubble = page.locator(".interests-bubble");
+  await bubble.scrollIntoViewIfNeeded();
+  const expected = [
+    "golf",
+    "tennis",
+    "reading",
+    "finding new places on Yelp",
+    "trying new restaurants",
+    "traveling",
+    "chasing sunsets",
+    "birdwatching",
+    "my dog, Kody - try to find him on this site :)",
+  ];
+  await bubble.focus();
+  for (const interest of expected) {
+    await expect(bubble.locator(".interests-value")).toHaveText(interest);
+    await page.keyboard.press("Enter");
+  }
+  await expect(bubble.locator(".interests-value")).toHaveText("golf");
+  await expect(
+    page.getByRole("heading", { name: "In my free time" }),
+  ).toHaveCount(0);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+});
+
+test("About interests automatically slide upward and keep the compact desktop alignment", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/#about");
+  const bubble = page.locator(".interests-bubble");
+  await bubble.scrollIntoViewIfNeeded();
+  await page.mouse.move(0, 0);
+  const initial = await bubble.locator(".interests-value").last().textContent();
+  await expect
+    .poll(async () => bubble.locator(".interests-value").last().textContent(), {
+      timeout: 4000,
+    })
+    .not.toBe(initial);
+  const alignment = await page.evaluate(() => ({
+    heading: document
+      .querySelector("#about-heading .muted")!
+      .getBoundingClientRect().top,
+    lead: document.querySelector(".about-lead")!.getBoundingClientRect().top,
+    photo: document.querySelector(".about-portrait")!.getBoundingClientRect()
+      .bottom,
+    bubble: document.querySelector(".interests-bubble")!.getBoundingClientRect()
+      .bottom,
+  }));
+  expect(Math.abs(alignment.heading - alignment.lead)).toBeLessThan(12);
+  expect(alignment.bubble - alignment.photo).toBeLessThan(40);
+  await expect(page.locator(".interests-footer")).toHaveCount(0);
+});
+
+test("all gallery covers share the same top edge", async ({ page }) => {
+  for (const width of [375, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/");
+    await page.locator(".project-gallery-rail").scrollIntoViewIfNeeded();
+    const tops = await page
+      .locator(".gallery-cover")
+      .evaluateAll((covers) =>
+        covers.map((cover) => cover.getBoundingClientRect().top),
+      );
+    expect(Math.max(...tops) - Math.min(...tops)).toBeLessThan(1);
   }
 });

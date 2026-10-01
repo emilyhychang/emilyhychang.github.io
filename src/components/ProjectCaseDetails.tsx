@@ -17,9 +17,9 @@ export function HealthcareChart() {
         />
       </a>
       <figcaption>
-        Original notebook output · 2000–2019. Spending is in current US dollars
-        per person; life expectancy is in years. This association does not
-        establish causation.{" "}
+        Original notebook output · 2000 to 2019. Spending is in current US
+        dollars per person; life expectancy is in years. This association does
+        not establish causation.{" "}
         <a href={src} target="_blank" rel="noreferrer">
           View full size ↗
         </a>
@@ -59,9 +59,9 @@ export function PantryPalPreview() {
         <span>AI’m your chef / 07</span>
       </div>
       <h4>
-        What’s in your pantry?
+        Find a recipe
         <br />
-        Start there.
+        with what you have.
       </h4>
       <div className="pantry-ingredients">
         <div>

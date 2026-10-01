@@ -17,7 +17,8 @@ export function LMACaseVisual() {
         />
       </a>
       <figcaption>
-        ServiceTitan File Cleaner · Three CSV inputs, one repeatable workflow.{" "}
+        ServiceTitan File Cleaner · Upload screen for the export and two
+        datasets.{" "}
         <a href={src} target="_blank" rel="noreferrer">
           View full size ↗
         </a>

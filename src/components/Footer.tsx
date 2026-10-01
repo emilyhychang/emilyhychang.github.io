@@ -6,7 +6,7 @@ export function Footer() {
     <footer id="contact" className="footer">
       <div className="container">
         <div className="section-header">
-          <span>Good things start with a conversation</span>
+          <span>Get in touch</span>
           <a
             href="#top"
             onClick={(event) => {
@@ -25,14 +25,14 @@ export function Footer() {
         </div>
         <div className="footer-main">
           <h2>
-            Have a problem
+            Want to
             <br />
-            worth solving?
+            work together?
           </h2>
           <div className="footer-cta">
             <Magnetic>
               <ResourceLink href={links.email} placeholder="Add email">
-                Let’s talk.
+                Email me.
               </ResourceLink>
             </Magnetic>
           </div>
@@ -53,7 +53,6 @@ export function Footer() {
               Resume
             </ResourceLink>
           </div>
-          <span className="footer-note">Thoughtfully put together.</span>
         </div>
       </div>
     </footer>

@@ -51,8 +51,8 @@ export default function App() {
   useEffect(() => {
     document.title =
       page === "projects"
-        ? "Projects — Emily Chang"
-        : "Emily Chang — Selected Work";
+        ? "Projects | Emily Chang"
+        : "Emily Chang | Selected Work";
     const frame = requestAnimationFrame(() => {
       const target = document.getElementById(window.location.hash.slice(1));
       if (target) target.scrollIntoView({ behavior: "instant" });
@@ -76,7 +76,7 @@ export default function App() {
                   <h1>
                     Projects<span>.</span>
                   </h1>
-                  <p>Different questions. The same curiosity.</p>
+                  <p>Browse my design, coding, and research projects.</p>
                 </div>
                 <SelectedWork
                   onOpen={openProject}

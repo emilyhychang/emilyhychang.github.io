@@ -132,14 +132,14 @@ function ProjectSection({
               : project.id === "soft-drinks"
                 ? "UC San Diego · Behavioral experiment / 108 participants"
                 : project.id === "healthcare"
-                  ? "OECD / World Bank · Python / 2000–2019"
+                  ? "OECD / World Bank · Python / 2000 to 2019"
                   : project.id === "pantrypal"
                     ? "Team project · NLP / Recipe filtering"
                     : project.id === "smart-basket"
                       ? "Spring 2026 · UI/UX design / User research"
                       : project.id === "lma"
                         ? "ServiceTitan File Cleaner · Python / Streamlit"
-                        : "[Add project detail]"}
+                        : "Shared movie-room concept"}
         </span>
         <Magnetic>
           <button className="case-link" onClick={() => onOpen(project.id)}>
@@ -165,7 +165,9 @@ export function SelectedWork({
       className="container work-section"
       aria-labelledby="work-heading"
     >
-      <SectionHeader aside={`01—${String(projects.length).padStart(2, "0")}`}>
+      <SectionHeader
+        aside={`01 to ${String(projects.length).padStart(2, "0")}`}
+      >
         Selected work
       </SectionHeader>
       <div className="work-intro sr-only">
@@ -174,11 +176,7 @@ export function SelectedWork({
           <br />
           analyzed, and figured out.
         </h2>
-        <span className="work-note">
-          Different questions.
-          <br />
-          The same curiosity.
-        </span>
+        <span className="work-note">Browse by discipline.</span>
       </div>
       <div className="lens-row">
         <div

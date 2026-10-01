@@ -49,9 +49,7 @@ function WatchTogetherPreview({ active = true }: { active?: boolean }) {
             <span className="star star-two" />
             <span className="star star-three" />
           </div>
-          <span className="screen-caption">
-            A little closer, even from here.
-          </span>
+          <span className="screen-caption">Movie night, wherever you are.</span>
           {elapsed > 2 && (
             <span className="demo-reaction" role="status">
               B: This is the good part.
@@ -59,7 +57,7 @@ function WatchTogetherPreview({ active = true }: { active?: boolean }) {
           )}
           <div className="movie-caption">
             <span className="eyebrow">Tonight’s feature</span>
-            <strong>[Add movie title]</strong>
+            <strong>Playback demo</strong>
           </div>
         </div>
         <div className="watch-controls">
@@ -96,9 +94,7 @@ function WatchTogetherPreview({ active = true }: { active?: boolean }) {
           </span>
         </div>
       </div>
-      <span className="visual-caption">
-        Concept preview · [Add application screenshot]
-      </span>
+      <span className="visual-caption">Shared movie-room concept</span>
     </div>
   );
 }
@@ -107,13 +103,14 @@ function F1Telemetry() {
     <div className="f1-visual">
       <div className="f1-top">
         <span>F1 / EXPLORER</span>
-        <span>RACE INTELLIGENCE</span>
+        <span>RACE ANALYSIS</span>
       </div>
       <div className="track-label">
-        <span className="eyebrow">The data behind the drive.</span>
+        <span className="eyebrow">Lap times and tire strategy</span>
         <strong>
-          Every lap.
-          <br />A different story.
+          Compare drivers
+          <br />
+          across a race.
         </strong>
       </div>
       <svg
@@ -143,9 +140,7 @@ function F1Telemetry() {
           GAP <b>—</b>
         </span>
       </div>
-      <span className="visual-caption">
-        Illustrative preview · [Add race data]
-      </span>
+      <span className="visual-caption">Illustrative circuit preview</span>
     </div>
   );
 }
@@ -154,18 +149,18 @@ function CornerstoneDeck() {
   const reduced = useReducedMotion();
   const slides = [
     {
-      title: "Making sense of what’s next.",
-      label: "From question to direction",
+      title: "Finding the right pottery class.",
+      label: "Mud Lily Clay website redesign",
       footer: "Research → Strategy",
     },
     {
-      title: "[Add research insight]",
-      label: "The evidence",
+      title: "One-time visitors and returning learners.",
+      label: "Two customer groups",
       footer: "Research → Analysis",
     },
     {
-      title: "[Add recommendation]",
-      label: "A clear direction",
+      title: "A shorter path from classes to booking.",
+      label: "Revised navigation",
       footer: "Recommendation → Presentation",
     },
   ];
@@ -218,7 +213,7 @@ function CornerstoneDeck() {
         </button>
       </div>
       <span className="visual-caption">
-        Presentation concept · [Add sanitized slides]
+        Project summary · Presentation concept
       </span>
     </div>
   );
