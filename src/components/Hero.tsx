@@ -13,18 +13,18 @@ export function Hero() {
       >
         <text
           x="800"
-          y="345"
+          y="347"
           textAnchor="middle"
-          textLength="1660"
+          textLength="1620"
           lengthAdjust="spacingAndGlyphs"
         >
           EMILY
         </text>
         <text
           x="800"
-          y="705"
+          y="700"
           textAnchor="middle"
-          textLength="1640"
+          textLength="1620"
           lengthAdjust="spacingAndGlyphs"
         >
           CHANG

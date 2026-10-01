@@ -76,6 +76,9 @@ export function ProjectGallery({
       className="home-gallery"
       aria-labelledby="gallery-heading"
     >
+      <span className="projects-watermark" aria-hidden="true">
+        PROJECTS
+      </span>
       <div className="container gallery-heading">
         <div>
           <p className="eyebrow">Selected projects / 01 to 08</p>

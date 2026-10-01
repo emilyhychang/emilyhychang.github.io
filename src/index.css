@@ -170,9 +170,9 @@ html {
   user-select: none;
   fill: #eae7e1;
   opacity: 0.65;
-  font-family: "Bodoni MT", Didot, "Times New Roman", serif;
-  font-size: 510px;
-  font-weight: 400;
+  font-family: "Bodoni 72 Smallcaps", "Bodoni 72", Didot, serif;
+  font-size: 500px;
+  font-weight: 700;
 }
 .hero {
   min-height: 690px;
@@ -2658,7 +2658,6 @@ html {
   justify-content: space-between;
   gap: 30px;
   margin-bottom: 44px;
-  border-top: 1px solid var(--line);
   padding-top: 28px;
 }
 .gallery-heading h2 {
@@ -3146,4 +3145,44 @@ html {
     padding: 15px 0;
     font-size: 18px;
   }
+}
+/* PROJECTS background word */
+.home-gallery {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.projects-watermark {
+  position: absolute;
+
+  /* was 5px */
+  top: 82px;
+
+  /* keep */
+  right: 7%;
+  z-index: -1;
+
+  font-family: "Bodoni 72 Smallcaps", "Bodoni 72", Didot, serif;
+
+  /* was clamp(150px, 19vw, 360px) */
+  font-size: clamp(140px, 17vw, 325px);
+
+  font-weight: 700;
+  line-height: 0.8;
+  letter-spacing: -0.055em;
+
+  color: #eae7e1;
+  opacity: 0.65;
+
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.gallery-heading,
+.project-gallery-rail,
+.gallery-footer {
+  position: relative;
+  z-index: 1;
 }
