@@ -19,9 +19,9 @@ export const projectCovers: Record<
     label: "Client website",
   },
   lma: {
-    src: "covers/lma.png",
-    alt: "Marketing workflow connecting content, SEO, analytics, and insight.",
-    label: "Illustrative workflow",
+    src: "lma/servicetitan-cleaner.png",
+    alt: "ServiceTitan File Cleaner with three CSV upload areas.",
+    label: "Data automation tool",
   },
   healthcare: {
     src: "healthcare/life-expectancy.webp",

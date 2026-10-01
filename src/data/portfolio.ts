@@ -54,9 +54,9 @@ export const projects: Project[] = [
     number: "04",
     title: "LMA Marketing & Advertising",
     statement:
-      "Using data, content, and automation to make marketing work smarter.",
-    tags: ["Marketing", "Automation", "Analytics"],
-    lenses: ["Marketing", "Data"],
+      "Turning an hour-plus manual data process into a repeatable workflow.",
+    tags: ["Engineering", "Automation", "Data"],
+    lenses: ["Marketing", "Data", "Engineering"],
   },
   {
     id: "healthcare",
@@ -164,9 +164,11 @@ export const links: Record<
   | "healthcareGithub"
   | "pantrypalGithub"
   | "pantrypalDemo"
-  | "smartBasketCase",
+  | "smartBasketCase"
+  | "lmaGithub",
   string | null
 > = {
+  lmaGithub: "https://github.com/emilyhychang/LMA-data-automation",
   smartBasketCase:
     "https://recondite-asteroid-9e8.notion.site/Turning-EBT-Balances-Into-Grocery-Plans-918840d0da8582378b5701159c961423",
   resume: `${import.meta.env.BASE_URL}Emily_Chang_Resume.pdf`,

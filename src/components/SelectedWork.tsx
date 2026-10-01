@@ -137,7 +137,9 @@ function ProjectSection({
                     ? "Team project · NLP / Recipe filtering"
                     : project.id === "smart-basket"
                       ? "Spring 2026 · UI/UX design / User research"
-                      : "[Add project detail]"}
+                      : project.id === "lma"
+                        ? "ServiceTitan File Cleaner · Python / Streamlit"
+                        : "[Add project detail]"}
         </span>
         <Magnetic>
           <button className="case-link" onClick={() => onOpen(project.id)}>

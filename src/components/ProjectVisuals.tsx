@@ -1,3 +1,4 @@
+import { LMAPreview } from "./LMACaseDetails";
 import { SmartBasketPreview } from "./SmartBasketDetails";
 import { PantryPalPreview } from "./ProjectCaseDetails";
 import { HealthcarePreview, BehavioralPreview } from "./ResearchPreviews";
@@ -222,60 +223,11 @@ function CornerstoneDeck() {
     </div>
   );
 }
-function LMAWorkflow() {
-  const reduced = useReducedMotion();
-  return (
-    <div className="lma-visual">
-      <div className="lma-top">
-        <span>THE MARKETING SYSTEM</span>
-        <span>↗</span>
-      </div>
-      <div className="workflow">
-        {!reduced && (
-          <motion.i
-            className="workflow-indicator"
-            aria-hidden="true"
-            initial={{ top: 20, opacity: 0 }}
-            whileInView={{ top: [20, 90, 155, 225], opacity: [0, 1, 1, 0] }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 1.5, delay: 0.3, ease: "easeInOut" }}
-          />
-        )}
-        <div className="workflow-node">
-          01 <strong>Content</strong>
-          <span>↓</span>
-        </div>
-        <div className="workflow-branch">
-          <div className="workflow-node">
-            02 <strong>SEO</strong>
-          </div>
-          <span>→</span>
-          <span className="workflow-side">Website</span>
-        </div>
-        <span className="workflow-down">↓</span>
-        <div className="workflow-node">
-          03 <strong>Analytics</strong>
-          <span>↓</span>
-        </div>
-        <div className="workflow-branch">
-          <div className="workflow-node">
-            04 <strong>Insight</strong>
-          </div>
-          <span>→</span>
-          <span className="workflow-side">Next campaign</span>
-        </div>
-      </div>
-      <span className="visual-caption">
-        Illustrative workflow · [Add project details]
-      </span>
-    </div>
-  );
-}
 const visuals = {
   watchtogether: WatchTogetherPreview,
   f1: F1Telemetry,
   cornerstone: CornerstoneDeck,
-  lma: LMAWorkflow,
+  lma: LMAPreview,
   healthcare: HealthcarePreview,
   pantrypal: PantryPalPreview,
   "smart-basket": SmartBasketPreview,

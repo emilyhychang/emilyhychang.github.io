@@ -2910,3 +2910,23 @@ html {
     max-width: 480px;
   }
 }
+
+.lma-tool-preview {
+  padding: 24px;
+  background: #e1e7ed;
+}
+.lma-tool-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.lma-case-figure {
+  margin-top: 0;
+}
+.gallery-lma .gallery-cover {
+  padding: 24px;
+  background: #e1e7ed;
+}
+.gallery-lma .gallery-cover img {
+  object-fit: contain;
+}

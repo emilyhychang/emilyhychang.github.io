@@ -1,3 +1,4 @@
+import { lmaSections } from "./lmaCaseStudy";
 import { smartBasketSections } from "./smartBasketCaseStudy";
 import { healthcareSections } from "./healthcareCaseStudy";
 import { pantrypalSections } from "./pantrypalCaseStudy";
@@ -47,43 +48,7 @@ export const caseStudies: Record<ProjectId, CaseSection[]> = {
   "soft-drinks": behavioralSections,
   f1: f1Sections,
   cornerstone: cornerstoneSections,
-  lma: [
-    {
-      id: "problem",
-      title: "Business context & problem",
-      prompt: "[Add the business need, constraints, and baseline.]",
-    },
-    {
-      id: "analysis",
-      title: "What I analyzed",
-      prompt: "[Add data sources, questions, and findings.]",
-    },
-    {
-      id: "approach",
-      title: "What I changed / built",
-      prompt: "[Add verified changes to content, systems, or processes.]",
-    },
-    {
-      id: "automation",
-      title: "Automation",
-      prompt: "[Add the actual workflow, tools, and time-saving evidence.]",
-    },
-    {
-      id: "decisions",
-      title: "Content & SEO",
-      prompt: "[Add content decisions, SEO experiments, and rationale.]",
-    },
-    {
-      id: "result",
-      title: "Measurement & results",
-      prompt: "[Add measurement approach and verified metrics.]",
-    },
-    {
-      id: "reflection",
-      title: "Learnings",
-      prompt: "[Add what worked, what did not, and the next experiment.]",
-    },
-  ],
+  lma: lmaSections,
 };
 export const decisionQuestions = [
   "Why synchronized playback first?",

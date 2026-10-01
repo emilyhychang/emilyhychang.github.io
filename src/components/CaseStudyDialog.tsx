@@ -1,3 +1,5 @@
+import { lmaOverview } from "../data/lmaCaseStudy";
+import { LMACaseVisual } from "./LMACaseDetails";
 import { smartBasketOverview } from "../data/smartBasketCaseStudy";
 import {
   SmartBasketWorkflow,
@@ -198,6 +200,10 @@ export function CaseStudyDialog({
                 <p className="case-draft">
                   Smart Basket for ebtEDGE / A team-designed mobile extension
                 </p>
+              ) : project.id === "lma" ? (
+                <p className="case-draft">
+                  ServiceTitan File Cleaner / Data automation at LMA
+                </p>
               ) : (
                 <p className="case-draft">
                   Case study in progress · Content placeholders are marked
@@ -212,6 +218,8 @@ export function CaseStudyDialog({
                   <F1CaseVisual />
                 ) : project.id === "cornerstone" ? (
                   <CornerstoneCaseVisual />
+                ) : project.id === "lma" ? (
+                  <LMACaseVisual />
                 ) : (
                   <ProjectVisual id={project.id} />
                 )}
@@ -230,10 +238,12 @@ export function CaseStudyDialog({
                           ? pantrypalOverview
                           : project.id === "smart-basket"
                             ? smartBasketOverview
-                            : ["Role", "Timeline", "Tools"].map((label) => ({
-                                label,
-                                value: `[Add ${label.toLowerCase()}]`,
-                              }))
+                            : project.id === "lma"
+                              ? lmaOverview
+                              : ["Role", "Timeline", "Tools"].map((label) => ({
+                                  label,
+                                  value: `[Add ${label.toLowerCase()}]`,
+                                }))
                 ).map(({ label, value }) => (
                   <div key={label}>
                     <span className="eyebrow">{label}</span>
@@ -270,6 +280,13 @@ export function CaseStudyDialog({
                     placeholder="Add URL"
                   >
                     Original case study
+                  </ResourceLink>
+                </div>
+              )}
+              {project.id === "lma" && (
+                <div className="project-links">
+                  <ResourceLink href={links.lmaGithub} placeholder="Add URL">
+                    GitHub repository
                   </ResourceLink>
                 </div>
               )}
@@ -331,9 +348,6 @@ export function CaseStudyDialog({
                     )}
                   {project.id === "f1" && section.id === "approach" && (
                     <F1Architecture />
-                  )}
-                  {project.id === "lma" && section.id === "automation" && (
-                    <ProjectVisual id="lma" />
                   )}
                 </div>
               </section>
