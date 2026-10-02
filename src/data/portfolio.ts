@@ -182,7 +182,7 @@ export const links: Record<
   f1Github: "https://github.com/emilyhychang/f1-site",
 };
 export const toolGroups = [
-  { title: "Build", items: ["Python", "JavaScript", "React", "Git"] },
+  { title: "Build", items: ["Python", "JavaScript", "HTML/CSS", "React", "Git"] },
   { title: "Analyze", items: ["SQL", "Excel", "Tableau", "Power BI", "Google Analytics"] },
   { title: "Create", items: ["Figma", "Adobe", "Canva"] },
 ];

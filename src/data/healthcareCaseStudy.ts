@@ -2,7 +2,7 @@ import type { CaseSection } from "./caseStudies";
 export const healthcareOverview = [
   { label: "Scope", value: "OECD countries · 2000 to 2019" },
   { label: "Sources", value: "OECD · World Bank" },
-  { label: "Tools", value: "Regression Modeling · Python · pandas · seaborn · SciPy · matplotlib" },
+  { label: "Tools", value: "Regression Modeling · Python · pandas · seaborn · SciPy · NumPy · matplotlib" },
 ];
 export const healthcareSections: CaseSection[] = [
   {
