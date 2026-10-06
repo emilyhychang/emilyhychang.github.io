@@ -15,7 +15,6 @@
 }
 * {
   box-sizing: border-box;
-  
 }
 body {
   margin: 0;
@@ -1384,7 +1383,7 @@ html {
     font-size: 43px;
     margin: 35px 0 35px;
   }
-  
+
   .about-grid {
     grid-template-columns: 1fr;
     gap: 34px;
@@ -2935,7 +2934,8 @@ html {
 }
 @media (max-width: 767px) {
   .about-portrait {
-    max-width: 480px;
+    width: min(76vw, 300px);
+    margin-inline: auto;
   }
 }
 
@@ -3264,6 +3264,59 @@ html {
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
+}
+
+@media (max-width: 767px) {
+  .projects-page-heading {
+    overflow: hidden;
+  }
+
+  .projects-page-watermark {
+    left: 0;
+    top: 76px;
+    transform: none;
+    width: min(100%, 340px);
+    font-size: clamp(72px, 23vw, 96px);
+    line-height: 0.78;
+    letter-spacing: -0.055em;
+    white-space: normal;
+    filter: opacity(0.65);
+  }
+
+  .about-section .section-header > span:first-child {
+    top: 0;
+  }
+
+  .about-section > h2 {
+    max-width: 100%;
+    margin: 32px 0 38px;
+    font-size: clamp(34px, 10.5vw, 42px);
+    line-height: 1.1;
+    overflow-wrap: break-word;
+  }
+
+  .about-watermark {
+    top: 38%;
+    right: 8px;
+    width: 0.82em;
+    font-size: clamp(82px, 23vw, 98px);
+    line-height: 0.72;
+    opacity: 0.42;
+  }
+
+  .about-watermark > span {
+    width: 0.82em;
+  }
+
+  .about-grid {
+    gap: 40px;
+  }
+
+  .about-copy p.about-lead {
+    font-size: clamp(17px, 4.6vw, 19px);
+    line-height: 1.55;
+    letter-spacing: -0.025em;
+  }
 }
 
 .degree-tooltip {

@@ -137,7 +137,7 @@ test("preview playback, slide controls and relevance lens work", async ({
 test("mobile menu, full-screen dialog and responsive widths", async ({
   page,
 }) => {
-  for (const width of [375, 768, 1024, 1440]) {
+  for (const width of [375, 390, 393, 414, 430, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/");
     expect(
@@ -145,6 +145,44 @@ test("mobile menu, full-screen dialog and responsive widths", async ({
         () => document.documentElement.scrollWidth <= innerWidth,
       ),
     ).toBe(true);
+    if (width <= 430) {
+      const portrait = page.locator(".about-portrait");
+      const portraitBounds = await portrait.evaluate((element) => {
+        const bounds = element.getBoundingClientRect();
+        return {
+          center: (bounds.left + bounds.right) / 2,
+          width: bounds.width,
+        };
+      });
+      expect(portraitBounds.width).toBeLessThanOrEqual(300);
+      expect(Math.abs(portraitBounds.center - width / 2)).toBeLessThanOrEqual(
+        1,
+      );
+      await expect(page.locator(".about-lead")).toHaveCSS(
+        "font-size",
+        /^(17|18|19)(\.\d+)?px$/,
+      );
+    }
+
+    await page.goto("/#/projects");
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    if (width <= 430) {
+      const watermark = page.locator(".projects-page-watermark");
+      await expect
+        .poll(() =>
+          watermark.evaluate((element) => {
+            const bounds = element.getBoundingClientRect();
+            return bounds.left >= 0 && bounds.right <= innerWidth;
+          }),
+        )
+        .toBe(true);
+      await expect(watermark).toHaveCSS("white-space", "normal");
+    }
+
     await page.goto("/#/work/lma");
     await expect(page.getByRole("dialog")).toBeVisible();
     expect(
