@@ -2674,7 +2674,6 @@ html {
 }
 .home-gallery {
   padding: 100px 0 110px;
-  overflow: hidden;
 }
 .gallery-heading {
   display: flex;
@@ -2710,11 +2709,16 @@ html {
   align-items: flex-start;
   gap: 24px;
   overflow-x: auto;
+  overflow-y: hidden;
   padding: 8px max(56px, calc((100vw - 1280px) / 2)) 28px;
-  scrollbar-width: thin;
-  scrollbar-color: #9d9f90 transparent;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   scroll-padding-inline: max(56px, calc((100vw - 1280px) / 2));
   overscroll-behavior-x: contain;
+}
+
+.project-gallery-rail::-webkit-scrollbar {
+  display: none;
 }
 .project-gallery-rail:focus-visible {
   outline: 2px solid #7d856c;
@@ -3212,29 +3216,6 @@ html {
   pointer-events: none;
   user-select: none;
 }
-
-.gallery-heading,
-/* MOBILE PROJECT GALLERY */
-.project-gallery-rail {
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.project-gallery-rail {
-  overflow-x: auto;
-  overflow-y: hidden;
-
-  /* hide scrollbar */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.project-gallery-rail::-webkit-scrollbar {
-  display: none;
-}
-
-
 
 .gallery-footer {
   position: relative;
