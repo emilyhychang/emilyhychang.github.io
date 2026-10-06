@@ -78,7 +78,7 @@ export function About() {
               </span>
             </span>{" "}
             and{" "}
-            <span className="degree-tooltip degree-business">
+            <span className="degree-tooltip">
               Business Economics
               <span className="degree-tooltip-popup tooltip-down">
                 Minoring in Business Analytics

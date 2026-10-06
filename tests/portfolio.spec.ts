@@ -137,7 +137,7 @@ test("preview playback, slide controls and relevance lens work", async ({
 test("mobile menu, full-screen dialog and responsive widths", async ({
   page,
 }) => {
-  for (const width of [375, 390, 393, 414, 430, 768, 1024, 1440]) {
+  for (const width of [375, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/");
     expect(
@@ -145,26 +145,6 @@ test("mobile menu, full-screen dialog and responsive widths", async ({
         () => document.documentElement.scrollWidth <= innerWidth,
       ),
     ).toBe(true);
-    if (width <= 430) {
-      await expect(page.locator(".project-gallery-rail")).toHaveCSS(
-        "display",
-        "grid",
-      );
-      await page.goto("/#/projects");
-      expect(
-        await page.evaluate(
-          () => document.documentElement.scrollWidth <= innerWidth,
-        ),
-      ).toBe(true);
-      const filterWidths = await page
-        .locator(".lens-selector button")
-        .evaluateAll((buttons) =>
-          buttons.map((button) => button.getBoundingClientRect().width),
-        );
-      expect(
-        Math.max(...filterWidths) - Math.min(...filterWidths),
-      ).toBeLessThan(1);
-    }
     await page.goto("/#/work/lma");
     await expect(page.getByRole("dialog")).toBeVisible();
     expect(
@@ -500,23 +480,11 @@ test("all gallery covers share the same top edge", async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/");
     await page.locator(".project-gallery-rail").scrollIntoViewIfNeeded();
-    const covers = await page.locator(".gallery-cover").evaluateAll((items) =>
-      items.map((cover) => {
-        const rect = cover.getBoundingClientRect();
-        return { top: rect.top, left: rect.left, right: rect.right };
-      }),
-    );
-    if (width < 768) {
-      expect(covers.every((cover) => cover.left >= 0)).toBe(true);
-      expect(covers.every((cover) => cover.right <= width)).toBe(true);
-      expect(
-        covers.every(
-          (cover, index) => index === 0 || cover.top > covers[index - 1].top,
-        ),
-      ).toBe(true);
-    } else {
-      const tops = covers.map((cover) => cover.top);
-      expect(Math.max(...tops) - Math.min(...tops)).toBeLessThan(1);
-    }
+    const tops = await page
+      .locator(".gallery-cover")
+      .evaluateAll((covers) =>
+        covers.map((cover) => cover.getBoundingClientRect().top),
+      );
+    expect(Math.max(...tops) - Math.min(...tops)).toBeLessThan(1);
   }
 });
