@@ -1,7 +1,20 @@
 import type { ReactNode } from "react";
 
 export function Arrow({ diagonal = true }: { diagonal?: boolean }) {
-  return <span aria-hidden="true">{diagonal ? "↗" : "↓"}</span>;
+  if (!diagonal) {
+    return <span aria-hidden="true">↓︎</span>;
+  }
+
+  return (
+    <svg
+      className="arrow-icon"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M5 19 19 5M9 5h10v10" />
+    </svg>
+  );
 }
 export function SectionHeader({
   children,
