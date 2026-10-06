@@ -2886,18 +2886,16 @@ html {
     gap: 24px;
   }
   .project-gallery-rail {
-    padding-left: 42px;
-    padding-right: 42px;
-    scroll-padding-left: 42px;
+    padding-inline: 20px;
+    scroll-padding-inline: 20px;
     gap: 24px;
   }
-
   .gallery-card {
-    flex: 0 0 76vw;
+    flex-basis: 84vw;
   }
-
   .gallery-cover {
     height: 250px;
+    padding: 20px;
   }
   .gallery-card h3 {
     font-size: 23px;
@@ -3186,7 +3184,6 @@ html {
 /* PROJECTS background word */
 .home-gallery {
   position: relative;
-  overflow-x: clip;
   overflow-y: visible;
   isolation: isolate;
 }
@@ -3293,7 +3290,18 @@ html {
   .projects-page-heading {
     overflow: hidden;
   }
-
+  .projects-watermark {
+    left: 0;
+    right: auto;
+    top: 185px;
+    width: 100%;
+    font-size: 29vw;
+    line-height: 0.8;
+    letter-spacing: -0.055em;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
   .projects-page-watermark {
     left: 0;
     top: 76px;
