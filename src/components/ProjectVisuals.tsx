@@ -81,7 +81,7 @@ function WatchTogetherPreview({ active = true }: { active?: boolean }) {
           <span className="time-code">
             00:{String(elapsed).padStart(2, "0")} / 00:12
           </span>
-          <span aria-hidden="true">↗</span>
+          <span aria-hidden="true">&#8599;</span>
         </div>
         <div className="watch-bottom">
           <span>
@@ -197,7 +197,7 @@ function CornerstoneDeck() {
         </div>
         <div className="deck-footer">
           <span>{slides[slide].footer}</span>
-          <span>↗</span>
+          <span>&#8599;</span>
         </div>
       </motion.div>
       <div className="deck-controls">

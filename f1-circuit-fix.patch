@@ -1657,7 +1657,7 @@ index 9d51fc6..df65efc 100644
 +        <section class="panel track-preview">
 +          <div class="eyebrow">Animated circuit</div>${map}
 +          <div class="circuit-caption">${escapeHTML(circuit.circuitName)} · NEXT RACE</div>
-+          <a class="circuit-guide" href="${track?.guide || 'https://formula-timer.com/circuit'}" target="_blank" rel="noopener noreferrer">Circuit guide on Formula Timer ↗</a>
++          <a class="circuit-guide" href="${track?.guide || 'https://formula-timer.com/circuit'}" target="_blank" rel="noopener noreferrer">Circuit guide on Formula Timer &#8599;</a>
 +        </section>
 +      </div>`;
 +    }

@@ -143,7 +143,7 @@ export function CommandPalette({
               }}
             >
               <span>{option.label}</span>
-              <span>{option.disabled ? "Unavailable" : "↗"}</span>
+              <span>{option.disabled ? "Unavailable" : "&#8599;"}</span>
             </li>
           ))}
         </ul>

@@ -20,7 +20,7 @@ export function LMACaseVisual() {
         ServiceTitan File Cleaner · Upload screen for the export and two
         datasets.{" "}
         <a href={src} target="_blank" rel="noreferrer">
-          View full size ↗
+          View full size &#8599;
         </a>
       </figcaption>
     </figure>

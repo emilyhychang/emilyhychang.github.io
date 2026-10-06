@@ -89,7 +89,7 @@ export function ProjectGallery({
           </h2>
         </div>
         <a className="all-projects-link" href="#/projects">
-          View all projects <span aria-hidden="true">↗</span>
+          View all projects <span aria-hidden="true">&#8599;</span>
         </a>
       </div>
       <div
@@ -134,7 +134,7 @@ export function ProjectGallery({
                 />
                 <span className="gallery-cover-label">{cover.label}</span>
                 <span className="gallery-open" aria-hidden="true">
-                  ↗
+                  &#8599;
                 </span>
               </div>
               <div className="gallery-card-meta">

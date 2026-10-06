@@ -2690,6 +2690,7 @@ html {
   letter-spacing: -0.055em;
   font-weight: 450;
   margin-top: 25px;
+  padding-bottom: 0.12em;
 }
 .gallery-heading em {
   font-family: Georgia, serif;
@@ -2756,6 +2757,11 @@ html {
   font-size: 8px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+}
+.gallery-open,
+.all-projects-link span {
+  font-family: Arial, sans-serif;
+  font-variant-emoji: text;
 }
 .gallery-open {
   position: absolute;
@@ -3174,7 +3180,8 @@ html {
 /* PROJECTS background word */
 .home-gallery {
   position: relative;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
   isolation: isolate;
 }
 
@@ -3207,7 +3214,41 @@ html {
 }
 
 .gallery-heading,
-.project-gallery-rail,
+/* MOBILE PROJECT GALLERY */
+.project-gallery-rail {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.project-gallery-rail {
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  /* hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.project-gallery-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-card {
+  flex: 0 0 calc(100vw - 84px);
+  width: calc(100vw - 84px);
+  scroll-snap-align: start;
+}
+
+.gallery-cover {
+  width: 100%;
+}
+
+.gallery-cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 .gallery-footer {
   position: relative;
   z-index: 1;
