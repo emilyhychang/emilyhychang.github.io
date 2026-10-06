@@ -2886,16 +2886,18 @@ html {
     gap: 24px;
   }
   .project-gallery-rail {
-    padding-inline: 20px;
-    scroll-padding-inline: 20px;
+    padding-left: 42px;
+    padding-right: 42px;
+    scroll-padding-left: 42px;
     gap: 24px;
   }
+
   .gallery-card {
-    flex-basis: 84vw;
+    flex: 0 0 76vw;
   }
+
   .gallery-cover {
     height: 250px;
-    padding: 20px;
   }
   .gallery-card h3 {
     font-size: 23px;
