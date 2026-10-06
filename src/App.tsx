@@ -108,13 +108,13 @@ export default function App() {
             ) : (
               <>
                 <Hero />
+                <ProjectGallery onOpen={openProject} />
                 <InView>
                   <About />
                 </InView>
                 <InView>
                   <Background />
                 </InView>
-                <ProjectGallery onOpen={openProject} />
                 <InView>
                   <ToolsGrid />
                 </InView>
