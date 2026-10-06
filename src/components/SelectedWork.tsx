@@ -212,6 +212,9 @@ export function SelectedWork({
           ? "All projects in selected-work order."
           : `All ${projects.length} projects ordered by ${lens.toLowerCase()} relevance.`}
       </p>
+
+      <div className="projects-divider" />
+
       <div className="projects">
         {projectsForLens(lens).map((project) => (
           <motion.div

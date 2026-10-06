@@ -428,6 +428,13 @@ html {
   position: relative;
   padding: 48px 80px 62px;
 }
+.gallery-heading {
+  border-top: 1px solid var(--line);
+  padding-top: 100px;
+}
+.gallery-heading .eyebrow {
+  margin-top: 18px;
+}
 .watch-app {
   width: 100%;
   max-width: 760px;
@@ -455,6 +462,10 @@ html {
 .watch-top > span {
   font-size: 8px;
   color: #b5c3cb;
+}
+.projects-divider {
+  width: 100%;
+  border-top: 1px solid var(--line);
 }
 .watch-top i,
 .sync-state i {
@@ -2670,8 +2681,8 @@ html {
   align-items: flex-end;
   justify-content: space-between;
   gap: 30px;
-  margin-bottom: 44px;
-  padding-top: 28px;
+  margin-bottom: 40px;
+  padding-top: 44px;
 }
 .gallery-heading h2 {
   font-size: clamp(44px, 5.8vw, 78px);
@@ -3168,10 +3179,11 @@ html {
 }
 
 .projects-watermark {
+  
   position: absolute;
 
   /* was 5px */
-  top: 82px;
+  top: 140px;
 
   /* keep */
   right: 7%;
