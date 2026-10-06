@@ -39,7 +39,7 @@ export function BehavioralCaseVisual({ kind }: { kind: keyof typeof visuals }) {
       <figcaption>
         {visual.caption}{" "}
         <a href={src} target="_blank" rel="noreferrer">
-          View full size &#8599;
+          View full size &#8599;&#65038;;
         </a>
       </figcaption>
     </figure>

@@ -16,7 +16,7 @@ export function SmartBasketPreview() {
             <div key={tool}>
               <span>0{index + 1}</span>
               <strong>{tool}</strong>
-              <span aria-hidden="true">&#8599;</span>
+              <span aria-hidden="true">&#8599;&#65038;</span>
             </div>
           ),
         )}
@@ -46,7 +46,7 @@ export function SmartBasketWorkflow() {
       <figcaption>
         Team prototype and milestone iterations.{" "}
         <a href={src} target="_blank" rel="noreferrer">
-          View full size &#8599;
+          View full size &#8599;&#65038;
         </a>
       </figcaption>
     </figure>
@@ -99,7 +99,7 @@ export function SmartBasketComparisons() {
             <figcaption>
                 {item.caption}{" "}
                 <a href={src} target="_blank" rel="noreferrer">
-                  View full size &#8599;
+                  View full size &#8599;&#65038;
                 </a>
               </figcaption>
           </figure>

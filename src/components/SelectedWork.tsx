@@ -143,7 +143,7 @@ function ProjectSection({
         </span>
         <Magnetic>
           <button className="case-link" onClick={() => onOpen(project.id)}>
-            View case study <span aria-hidden="true">&#8599;</span>
+            View case study <span aria-hidden="true">&#8599;&#65038;</span>
           </button>
         </Magnetic>
       </div>

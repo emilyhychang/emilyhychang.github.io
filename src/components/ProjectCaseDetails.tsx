@@ -21,7 +21,7 @@ export function HealthcareChart() {
         dollars per person; life expectancy is in years. This association does
         not establish causation.{" "}
         <a href={src} target="_blank" rel="noreferrer">
-          View full size &#8599;
+          View full size &#8599;&#65038;
         </a>
       </figcaption>
     </figure>

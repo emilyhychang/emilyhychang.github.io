@@ -76,7 +76,7 @@ export function ProjectCursor({
     >
       {children}
       <button className="visual-open" aria-label={label} onClick={onOpen}>
-        View case <span aria-hidden="true">&#8599;</span>
+        View case <span aria-hidden="true">&#8599;&#65038;</span>
       </button>
       {visible && (
         <motion.span
@@ -84,7 +84,7 @@ export function ProjectCursor({
           style={{ x: sx, y: sy }}
           aria-hidden="true"
         >
-          {label} &#8599;
+          {label} &#8599;&#65038;
         </motion.span>
       )}
     </div>

@@ -317,7 +317,7 @@ export function CaseStudyDialog({
               }}
             >
               <span className="eyebrow">Next project</span>
-              <span>{next.title} &#8599;</span>
+              <span>{next.title} &#8599;&#65038;</span>
             </button>
           </div>
         </div>
